@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome to MindSetGO
+			{% endblock %}
+		</title>
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block stylesheets %}
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+			<link rel="stylesheet" href="css/style.css">
+		{% endblock %}
+
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+		{% endblock %}
+	</head>
+
+
+	<body>
+		{# nav bar #}
+		<header class="p-2 bg-white text-secondary">
+			<div class="container">
+
+				<div class="d-flex flex-wrap align-items-center justify-content-between">
+
+					<div class="logo">
+						<img class="logo-item" src="images/logo3.png" alt="Logo mindsetandgo">
+					</div>
+
+					<div class="d-flex">
+						<ul class="nav mb-2 justify-content-center mb-md-0">
+							<li>
+								<a href="#" class="nav-link px-2 text-secondary">Accueil</a>
+							</li>
+							<li>
+								<a href="#" class="nav-link px-2 text-secondary">Citations</a>
+							</li>
+							<li>
+								<a href="#" class="nav-link px-2 text-secondary me-5">Blog</a>
+							</li>
+						</ul>
+						{# <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" data-children-count="1">
+																																																																																																							<input type="search" class="form-control form-control-dark" placeholder="Rechercher une citation" aria-label="Search">
+																																																																																																						</form> #}
+						<div class="text-end">
+							<button type="button" class="btn me-2">Login</button>
+							<button type="button" class="btn btn-warning">Sign-up</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		{% block body %}
+			
+		{% endblock %}
+
+		<footer></footer>
+	</body>
 </html>
