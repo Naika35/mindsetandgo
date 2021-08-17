@@ -25,20 +25,24 @@ blockquote{
     font-weight: 400;
     text-shadow:  1px 1px grey;
     font-family: Pacifico;
-    font-size: 350%;
+    font-size: 320%;
 }
 .banner p{
     text-align: justify;
     padding: 2% 6% 1%;
 }
 
-.last-quotes-title {
+.banner-last-quotes{
+    background-color: #fccc6ca4;
+}
+.last-quotes-header {
     text-align: center;
     margin: 6% 0% 5%;
+    padding-top: 5%;
 }
 
 .card-body {
-    background-color: #fccc6ca4;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
