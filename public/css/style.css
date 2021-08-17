@@ -83,3 +83,34 @@ blockquote{
     font-size: 75%;
 
 }
+
+/* profile */
+
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-avatar {
+    width: 9rem;
+    border-radius: 50%;
+    box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
+}
+
+.profile-pseudo {
+    padding-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: playfair display;
+
+}
+
+.profile-description {
+    padding: 1rem 2rem;
+    text-align: center;
+    font-family: playfair display;
+}
+
+@media (min-width: 1024px) {
+    
+}
