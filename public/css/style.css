@@ -1,116 +1,134 @@
-
-:root{
---my-orange:#f57b18;
---my-yellow: #FFC107;
---my-turquoise: #00D6C3;
---my-blue: #0AB7DD;
---my-gray: #DCE4F7;
+:root {
+  --my-orange: #f57b18;
+  --my-yellow: #ffc107;
+  --my-turquoise: #00d6c3;
+  --my-blue: #0ab7dd;
+  --my-gray: #dce4f7;
 }
-
-
-blockquote{
-    text-align: center;
-    font-size: 90%;
-    padding: 0 4% 0;
+body {
+  background-image: url(../images/backgroung2.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .logo-item {
-    width: 12rem;
-    padding: 0;
-    margin: 0;
+  width: 12rem;
+  padding: 0;
+  margin: 0;
 }
 
-.banner h1{
-    color: var(--my-yellow);
-    font-weight: 400;
-    text-shadow:  1px 1px grey;
-    font-family: Pacifico;
-    font-size: 320%;
+/* bannières de présentation */
+
+.banner h1 {
+  color: #f6931e;
+  font-weight: 400;
+  text-shadow: 1px 1px grey;
+  font-family: Pacifico;
+  font-size: 320%;
+  padding-top: 1.7rem;
 }
-.banner p{
-    text-align: justify;
-    padding: 2% 6% 1%;
+.banner p {
+  text-align: justify;
+  padding: 2% 6% 1%;
 }
 
-.banner-last-quotes{
-    background-color: #fccc6ca4;
+.btn-left {
+    margin: 0 2.5rem;
 }
+
+.banner img {
+  border-radius: 50%;
+  box-shadow: 1rem 1rem 0.2rem #ebebeb;
+}
+
+/* les dernières citations */
+
+blockquote {
+  text-align: center;
+  font-size: 90%;
+  padding: 0 4% 0;
+}
+
 .last-quotes-header {
-    text-align: center;
-    margin: 6% 0% 5%;
-    padding-top: 5%;
+  text-align: center;
+  margin: 3% 0% 5%;
+  padding-top: 5%;
 }
 
+.last-quotes-header h2 {
+  border-bottom: solid;
+  margin: 0.5rem 20% 1.5rem;
+  padding: 1rem;
+}
 .card-body {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2% 2% 1%;
-    box-shadow: 2px 4px 10px lightgrey;
-    border-radius: 10%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2% 2% 1%;
+  margin: 0 15%;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.541);
+  border-radius: 10%;
 }
-
 
 .card-blockquote-img {
-    width: 3.5rem;
-    margin-bottom: 3%;
+  width: 3.5rem;
+  margin-bottom: 3%;
 }
 
 .card-footer {
-    background-color: unset;
-    display: flex;
-    justify-content: space-between;
+  background-color: unset;
+  display: flex;
+  justify-content: space-between;
 }
-    
-.card-footer-member{
-    display: flex;
-    align-items: flex-end;
-    font-size: 85%;
 
+.card-footer-member {
+  display: flex;
+  align-items: flex-end;
+  font-size: 85%;
 }
 
 .card-footer-avatar {
-    width: 20%;
-    margin : 0 3%;
-    border-radius: 40%;
+  width: 20%;
+  margin: 0 3%;
+  border-radius: 40%;
 }
 
-.card-tag{
-    display: flex;;
-    align-items: flex-end;
-    font-size: 75%;
-
+.card-tag {
+  display: flex;
+  align-items: flex-end;
+  font-size: 75%;
 }
 
-/* profile */
+/* Page profile */
 
-.profile-info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .profile-avatar {
-    width: 9rem;
-    border-radius: 50%;
-    box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
+  width: 9rem;
+  border-radius: 50%;
+  box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
 }
 
 .profile-pseudo {
-    padding-top: 1.5rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-    font-family: playfair display;
-
+  padding-top: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: playfair display;
 }
 
 .profile-description {
-    padding: 1rem 2rem;
-    text-align: center;
-    font-family: playfair display;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-family: playfair display;
 }
 
 @media (min-width: 1024px) {
-    
 }
