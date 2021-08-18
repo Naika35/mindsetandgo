@@ -1,14 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Inscription
+{% endblock %}
 
 {% block main %}
 
-<h1>Inscription</h1>
+	<div class="container p-5">
+		<div class="row d-flex">
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit" class="btn btn-success">M'inscrire</button>
-{{ form_end(form) }}
+			<div class="signup-wrapper1 col-lg-6">
+				<img class="img-fluid" src="{{ asset('images/vector-2.jpg') }}" alt="illustration-inscription">
+			</div>
+
+			<div class="signup-wrapper2 col-lg-6">
+
+				<h1>Rejoignez-nous</h1>
+
+				<div class="signup-form py-3 px-1">
+					{{ form_start(form) }}
+					{{ form_widget(form) }}
+					<button type="submit" class="btn btn-success mx-5 mt-3">M'inscrire</button>
+					{{ form_end(form) }}
+				</div>
+
+				<div>Tu as déja un compte ?
+					<a href="">Clique ici</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
 
 {% endblock %}

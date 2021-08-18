@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $avatar;
+    private $avatar = "avatar-default.png";
 
     /**
      * @ORM\Column(type="datetime")
