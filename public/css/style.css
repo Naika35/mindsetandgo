@@ -18,12 +18,20 @@ body {
   border: 0;
   color: white;
   font-weight: 700;
+  font-size: 1.1rem;
 }
 
 .logo-item {
-  width: 13rem;
-  padding: 0;
+  width: 14.5rem;
+  padding: 1.5rem 0 0rem;
   margin: 0;
+}
+
+/* Navbar header */
+
+#nav-header a {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 /* bannières de présentation */
