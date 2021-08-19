@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome to MindSetGO
+{% endblock %}
+
+{% block main %}
+	<main>
+		<section class="banner">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+
+					<div class="col-sm-10 col-lg-6 order-lg-2">
+						<img class="img-fluid" src="{{asset('images/vector-presentation.jpg')}}" alt="">
+					</div>
+
+					<div class="pt-4 col-sm-10 col-lg-6 order-lg-1">
+						<h1>Motiver. Inspirer. Partager.</h1>
+						<p>
+							Découvrer des citations motivantes de nos membres et partager les votres.
+							<br>
+						</p>
+						<div class="d-flex">
+							<button class="btn-left btn btn-warning">Découvrer nos citations</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="banner-last-quotes">
+			<div class="container">
+				<div class="last-quotes-header">
+					<h2>Les dernières citations</h2>
+					<p>Retrouver nos dernières citations ajoutées par nos membres</p>
+				</div>
+				<div class="row cards">
+
+					<div class="card-body my-3 mx-5 col-lg-3 mx-lg-3">
+
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+
+						<blockquote>
+							<p>
+								Je pense donc je suis
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">René Descartes</em>
+								</footer>
+							</p>
+						</blockquote>
+
+						<div class="card-footer">
+							<div class="card-footer-member">
+								<p>Postée par:
+								</p>
+								<img class="card-footer-avatar" src="{{asset ('images/alex2.jpg') }}" alt="avatar de l'auteur">
+								<p>Naïka</p>
+							</div>
+							<div class="card-tag">
+								<p>Philo</p>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="card-body my-3 mx-5 col-lg-3 mx-lg-3">
+
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+						<blockquote>
+							<p>
+								Deux choses sont infinies : l'Univers et la bêtise humaine. Mais en ce qui concerne l'Univers, je n'en ai pas encore acquis la certitude absolue
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">René Descartes</em>
+								</footer>
+							</p>
+						</blockquote>
+
+						<div class="card-footer">
+							<div class="card-footer-member">
+								<p>Postée par:
+								</p>
+								<img class="card-footer-avatar" src="{{asset ('images/alex2.jpg') }}" alt="avatar de l'auteur">
+								<p>Naïka</p>
+							</div>
+							<div class="card-tag">
+								<p>Philo</p>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="card-body my-3 mx-5 col-lg-3 mx-lg-3">
+
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+						<blockquote>
+							<p>
+								Je pense donc je suis
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">René Descartes</em>
+								</footer>
+							</p>
+						</blockquote>
+
+						<div class="card-footer">
+							<div class="card-footer-member">
+								<p>Postée par:
+								</p>
+								<img class="card-footer-avatar" src="{{asset ('images/alex2.jpg') }}" alt="avatar de l'auteur">
+								<p>Naïka</p>
+							</div>
+							<div class="card-tag">
+								<p>Philo</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+{% endblock %}

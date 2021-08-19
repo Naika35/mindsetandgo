@@ -1,0 +1,171 @@
+:root {
+  --my-orange: #f57b18;
+  --my-yellow: #ffc107;
+  --my-turquoise: #00d6c3;
+  --my-blue: #A7C1EB;
+  --my-gray: #dce4f7;
+  --my-pink: rgba(248,100,129,1);
+}
+body {
+  background-image: url(../images/backgroung2.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.btn {
+  background: rgb(248, 186, 92) 0%;
+  box-shadow: 0.5rem 0.5rem 1.8rem var(--my-blue);
+  color: white;
+  font-weight: 700;
+}
+
+.logo-item {
+  width: 14.5rem;
+  padding: 1rem 0 0rem;
+  margin: 0;
+}
+
+/* Navbar header */
+
+#nav-header a {
+  font-weight: 600;
+}
+
+/* bannières de présentation */
+
+.banner {
+  padding: 0 6.5rem 2rem; 
+}
+.banner h1 {
+  font-weight: 400;
+  text-shadow: 1px 1px grey;
+  font-size: 2.5rem;
+  padding-top: 1rem;
+}
+.banner p {
+  text-align: justify;
+  padding: 1rem 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.btn-left {
+    margin: 0 1rem;
+}
+
+.banner img {
+  border-radius: 50%;
+  box-shadow: 1rem 1rem 0.2rem #ebebeb;
+}
+
+/* les dernières citations */
+
+blockquote {
+  text-align: center;
+  font-size: 90%;
+  padding: 0 4% 0;
+}
+
+.last-quotes-header {
+  text-align: center;
+  margin: 0.5rem 0rem 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.last-quotes-header h2 {
+  border-bottom: solid;
+  margin: 0.5rem 20% 1.5rem;
+  padding: 1rem;
+}
+.card-body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2% 2% 1%;
+  margin: 0 15%;
+  box-shadow: 15px 15px 15px var(--my-blue);
+  border: 1px solid rgba(211, 211, 211, 0.207);
+  border-radius: 10%;
+}
+
+.card-blockquote-img {
+  width: 3.5rem;
+  margin-bottom: 3%;
+}
+
+.card-footer {
+  background-color: unset;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-footer-member {
+  display: flex;
+  align-items: flex-end;
+  font-size: 85%;
+}
+
+.card-footer-avatar {
+  width: 20%;
+  margin: 0 3%;
+  border-radius: 40%;
+}
+
+.card-tag {
+  display: flex;
+  align-items: flex-end;
+  font-size: 75%;
+}
+
+/* Page profile */
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  margin-top: 1rem;
+  width: 9rem;
+  border-radius: 50%;
+  box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
+}
+
+.profile-pseudo {
+  padding-top: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: playfair display;
+}
+
+.profile-description {
+  padding: 1rem 4rem;
+  text-align: center;
+  font-family: playfair display;
+  font-size: 1.3rem;
+}
+
+/* page d'inscription */
+
+.signup-wrapper1 img{
+  border-radius: 40%;
+  padding-top: 4rem;
+}
+
+.signup-wrapper2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page de connexion */
+
+.login-img img {
+  border-radius: 30%;
+  padding-top: 2rem;
+  width: 25rem;
+}
