@@ -12,13 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("user", name="user_")
- */
+
 class UserController extends AbstractController
 {
     /**
-     * @Route("/slug", name="read")
+     * @Route("/slug", name="user_read")
      */
     public function index(): Response
     {

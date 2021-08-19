@@ -30,8 +30,8 @@
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<a class="navbar-brand p-0" href="">
-							<img class="logo-item" src="{{ asset('images/logo-blue.png') }}" alt="Logo mindsetandgo">
+						<a class="navbar-brand p-0" href="/">
+							<img class="logo-item" src="{{ asset('images/logo-orange.png') }}" alt="Logo mindsetandgo">
 						</a>
 						<div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
 							<ul class="navbar-nav" id="nav-header">
@@ -46,10 +46,10 @@
 								</li>
 								{# <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" data-children-count="1"><input type="search" class="form-control form-control-dark" placeholder="Rechercher une citation" aria-label="Search"></form> #}
 								<li class="nav-item">
-									<a href=""><button type="button" class="btn mx-lg-3 mb-2">Se connecter</button></a>
+									<a href="{{ path('app_login') }}"><button type="button" class="btn mx-lg-3 mb-2">Se connecter</button></a>
 								</li>
 								<li class="nav-item">
-									<a href="{{ path('user_signup') }}"><button type="button" class="btn btn-warning">S'inscrire</button></a>
+									<a href="{{ path('signup') }}"><button type="button" class="btn btn-warning">S'inscrire</button></a>
 								</li>
 							</ul>
 						</div>
