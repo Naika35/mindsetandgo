@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\SignUpType;
-use Doctrine\ORM\EntityManager;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +30,8 @@ class UserController extends AbstractController
     /**
      * @Route("/signup", name="signup")
      */
-    public function signUp(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em) {
+    public function signUp(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em, FileUploader $fileUploader)
+    {
 
         $user = new User();
 
@@ -40,7 +41,13 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Encodage du password
-            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));  
+            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
+
+            $avatarFile = $form->get('avatar')->getData();
+            if ($avatarFile) {
+                $avatarFileName = $fileUploader->upload($avatarFile);
+                $user->setAvatar($avatarFileName);
+            }
 
             $em->persist($user);
             $em->flush();
