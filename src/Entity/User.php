@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -65,6 +66,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    /**
+     * @Gedmo\Slug(fields={"pseudo"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function __construct(){
 
@@ -231,4 +238,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /* public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    } */
 }
