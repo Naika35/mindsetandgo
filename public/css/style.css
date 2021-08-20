@@ -169,3 +169,10 @@ blockquote {
   padding-top: 2rem;
   width: 25rem;
 }
+
+/* Tableau back-office */
+
+#table-avatar{
+  width: 3rem;
+  border-radius: 50%;
+}

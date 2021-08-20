@@ -60,7 +60,7 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/user-delete/{id}", name="admin_user_delete")
      */
-    public function delete(request $request, User $user, EntityManager $em)
+    public function delete(User $user, EntityManager $em)
     {
         $em->remove($user);
         $em->flush;
