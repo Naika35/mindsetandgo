@@ -25,7 +25,7 @@ class Quote
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $author_name;
+    private $author;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -41,6 +41,11 @@ class Quote
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    public function __construct(){
+
+        $this->createdAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -59,14 +64,14 @@ class Quote
         return $this;
     }
 
-    public function getAuthorName(): ?string
+    public function getAuthor(): ?string
     {
-        return $this->author_name;
+        return $this->author;
     }
 
-    public function setAuthorName(?string $author_name): self
+    public function setAuthor(?string $author): self
     {
-        $this->author_name = $author_name;
+        $this->author = $author;
 
         return $this;
     }

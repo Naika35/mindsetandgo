@@ -55,7 +55,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Vous avez bien rajouter un(e) nouvel(le) utilisateur(rice)');
 
-            return $this->redirectToRoute('admin_user_browse'); // mettre la page login
+            return $this->redirectToRoute('admin_user_browse');
         }
 
         return $this->render('admin/user/add.html.twig', [
