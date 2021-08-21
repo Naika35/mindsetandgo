@@ -170,9 +170,41 @@ blockquote {
   width: 25rem;
 }
 
+
+/* BACK OFFICE */
+
+
+#navbar-back{
+  height: 100vh;
+  position: fixed;  
+  align-items: flex-start;
+}
+
+#navbar-back ul {
+padding-top: 5rem;
+}
+
+#navbar-back .nav-item{
+  padding-bottom: 1rem;
+}
+
+#main-back{
+  margin-left: 10rem;
+  width: 69rem;
+}
+
 /* Tableau back-office */
 
 #table-avatar{
   width: 3rem;
   border-radius: 50%;
 }
+
+#main-back td:first-child {
+  padding-left: 1rem;
+}
+
+#main-back tbody{
+  color:rgba(0, 0, 0, 0.816);
+}
+

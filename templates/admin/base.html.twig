@@ -11,17 +11,61 @@
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 			<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 			<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
+			<link rel="stylesheet" href="https://bootswatch.com/5/minty/bootstrap.min.css">
 			<link rel="stylesheet" href="{{ asset ('css/style.css') }}">
 		{% endblock %}
 
 	</head>
 
+	<body>
 
-		{% block main %}{% endblock %}
+		<div class="wrapper">
+			<nav id='navbar-back' class="navbar navbar-expand-lg navbar-dark bg-primary">
+				<div class="container-fluid flex-column">
+					<a class="navbar-brand" href="#">Logo</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarColor01">
+						<ul class="navbar-nav me-auto flex-column ">
+							<li class="nav-item">
+								<a class="nav-link active" href="#">Accueil
+									<span class="visually-hidden">(current)</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('admin_user_browse')}}">Membres</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Citations</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Commentaires</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div>
+							</li>
+						</ul>
 
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+					</div>
+				</div>
+			</nav>
+			<div id ="main-back" class="container">
+				<div class="row"> {% block main %}{% endblock %}
+					</div>
+				</div>
+			</div>
 
 
-</html>
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+		</body>
+	</html>
