@@ -31,7 +31,7 @@
 					<td>{{quote.author}}</td>
 					<td>{{quote.category}}</td>
 					<td>{{quote.createdAt|format_datetime('short','short',locale='fr')}}</td>
-					<td>{{quote.updatedAt ? updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
+					<td>{{quote.updatedAt ? quote.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>
 						<button class="btn btn-warning">
 							<a href="{{ path('admin_quote_edit', {'id': quote.id}) }}">edit</a>

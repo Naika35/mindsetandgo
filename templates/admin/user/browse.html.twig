@@ -36,7 +36,7 @@
 					<td>{{user.pseudo}}</td>
 					<td>{{user.roles|json_encode}}</td>
 					<td>{{user.createdAt|format_datetime('short','short',locale='fr')}}</td>
-					<td>{{user.updatedAt ? updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
+					<td>{{user.updatedAt ? user.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>
 						<button class="btn btn-warning">
 							<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>

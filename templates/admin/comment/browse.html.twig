@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block title %}Liste des commentaires
+{% endblock %}
+
+{% block main %}
+
+	<h1 class="mt-4 text-center">Liste des commentaires</h1>
+
+	<div class="d-flex justify-content-end">
+		<button class="btn btn-primary w-25"><a href="{{ path('admin_comment_add') }}">+ Ajouter un commentaire</a></button>
+	</div>
+
+	<table class="table table-hover mt-4">
+		<thead>
+			<tr class="table-primary">
+				<th scope="col">Commentaire</th>
+				<th scope="col">Date de création</th>
+				<th scope="col">Dernière de mise à jour</th>
+				<th scope="col">Modifier</th>
+				<th scope="col">Supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for comment in comments %}
+				<tr>
+					<td>{{comment.content}}</td>
+					<td>{{comment.createdAt|format_datetime('short','short',locale='fr')}}</td>
+					<td>{{comment.updatedAt ? comment.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
+					<td>
+						<button class="btn btn-warning">
+							<a href="{{ path('admin_comment_edit', {'id': comment.id}) }}">edit</a>
+						</button>
+					</td>
+					<td>
+						<button class="btn btn-warning">
+							<a href="{{ path('admin_comment_delete', {'id': comment.id}) }}">delete</a>
+						</button>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}
+
