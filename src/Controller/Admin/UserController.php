@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +31,7 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/user-edit/{id}", name="admin_user_edit")
      */
-    public function edit(Request $request, User $user, EntityManager $em)
+    public function edit(Request $request, User $user, EntityManagerInterface $em)
     {
 
         $form = $this->createFormBuilder($user)
@@ -41,7 +42,7 @@ class UserController extends AbstractController
                     'Utilisateur' => 'ROLE_USER',
                 ],
                 'expanded' => true,
-                'multiple' => false,
+                'multiple' => true,
             ])
             ->getForm();
 
@@ -55,12 +56,17 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('admin_user_browse');
         }
+
+        return $this->render('admin/user/edit.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 
     /**
      * @Route("/admin/user-delete/{id}", name="admin_user_delete")
      */
-    public function delete(User $user, EntityManager $em)
+    public function delete(User $user, EntityManagerInterface $em)
     {
         $em->remove($user);
         $em->flush;
