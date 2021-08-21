@@ -9,7 +9,9 @@
 	<h1 class="mt-4 text-center">Liste des membres</h1>
 
 	<div class="d-flex justify-content-end">
-		<button class="btn btn-primary w-25"><a href="{{ path('admin_user_add') }}">+ Ajouter un utilisateur</a></button>
+		<button class="btn btn-primary w-25">
+			<a href="{{ path('admin_user_add') }}">+ Ajouter un utilisateur</a>
+		</button>
 	</div>
 
 	<table class="table table-hover mt-4">
@@ -28,10 +30,14 @@
 			{% for user in users %}
 				<tr>
 					<td>
-						<div><img id="table-avatar" src="{{ asset('uploadedImages/' ~ user.avatar ~ '') }}" alt="avatar du membre"></div>
-						<div>{{user.firstname}}
-							{{user.lastname}}</div>
-						<div>{{user.email}}</div>
+						<div>
+							<img id="table-avatar" src="{{ asset('uploadedImages/' ~ user.avatar ~ '') }}" alt="avatar du membre"></div>
+						<div class="px-2">Prénom :
+							{{user.firstname}}<br>
+							Nom :
+							{{user.lastname}}<br>
+							Email :
+							{{user.email}}</div>
 					</td>
 					<td>{{user.pseudo}}</td>
 					<td>{{user.roles|json_encode}}</td>
@@ -39,12 +45,16 @@
 					<td>{{user.updatedAt ? user.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+							<a href="{{ path('admin_user_edit', {'id': user.id}) }}">
+								<i class="bi bi-pencil-square"></i>
+							</a>
 						</button>
 					</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_user_delete', {'id': user.id}) }}">delete</a>
+							<a href="{{ path('admin_user_delete', {'id': user.id}) }}">
+								<i class="bi bi-trash-fill"></i>
+							</a>
 						</button>
 					</td>
 				</tr>

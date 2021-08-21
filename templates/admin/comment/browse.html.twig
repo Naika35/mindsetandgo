@@ -30,12 +30,12 @@
 					<td>{{comment.updatedAt ? comment.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_comment_edit', {'id': comment.id}) }}">edit</a>
+							<a href="{{ path('admin_comment_edit', {'id': comment.id}) }}"><i class="bi bi-pencil-square"></i></a>
 						</button>
 					</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_comment_delete', {'id': comment.id}) }}">delete</a>
+							<a href="{{ path('admin_comment_delete', {'id': comment.id}) }}"><i class="bi bi-trash-fill"></i></a>
 						</button>
 					</td>
 				</tr>

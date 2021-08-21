@@ -34,12 +34,12 @@
 					<td>{{quote.updatedAt ? quote.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_quote_edit', {'id': quote.id}) }}">edit</a>
+							<a href="{{ path('admin_quote_edit', {'id': quote.id}) }}"><i class="bi bi-pencil-square"></i></a>
 						</button>
 					</td>
 					<td>
 						<button class="btn btn-warning">
-							<a href="{{ path('admin_quote_delete', {'id': quote.id}) }}">delete</a>
+							<a href="{{ path('admin_quote_delete', {'id': quote.id}) }}"><i class="bi bi-trash-fill"></i></a>
 						</button>
 					</td>
 				</tr>

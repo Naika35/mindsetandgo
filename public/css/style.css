@@ -173,11 +173,15 @@ blockquote {
 
 /* BACK OFFICE */
 
+  /* 1) navbar Back */
 
 #navbar-back{
   height: 100vh;
   position: fixed;  
   align-items: flex-start;
+  font-size: 0.9rem;
+  font-weight: 500;
+  
 }
 
 #navbar-back ul {
@@ -188,12 +192,23 @@ padding-top: 5rem;
   padding-bottom: 1rem;
 }
 
+  /* 2) Main Back */
+
 #main-back{
-  margin-left: 10rem;
+  margin-left: 10.3rem;
   width: 85vw;
 }
 
-/* Tableau back-office */
+  /* 3) Tableau Back */
+
+th {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+td {
+  font-size: 0.8rem;
+}
 
 #table-avatar{
   width: 3rem;
@@ -202,6 +217,7 @@ padding-top: 5rem;
 
 #main-back td:first-child {
   padding-left: 1rem;
+  display: flex;
 }
 
 #main-back tbody{
