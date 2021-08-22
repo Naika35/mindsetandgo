@@ -50,8 +50,8 @@ class QuoteType extends AbstractType
                     "Tristesse" => "Tristesse",
                 ],
                 "multiple" => true,
-                "expanded" => true,
-            ])
+                "expanded" => true,   
+                ])
         ;
     }
 
