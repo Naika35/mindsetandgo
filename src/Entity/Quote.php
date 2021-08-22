@@ -30,11 +30,6 @@ class Quote
     private $author;
 
     /**
-     * @ORM\Column(type="json")
-     */
-    private $category = ["Autre"];
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -90,19 +85,6 @@ class Quote
         return $this;
     }
 
-    public function getCategory(): ?array
-    { 
-        $category = $this->category;
-
-        return array_unique($category);
-    }
-
-    public function setCategory(array $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {

@@ -9,8 +9,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="profile-info px-5">
-						<img class="profile-avatar" src="{{asset ('images/alex2.jpg') }}" alt="Avatar du membre">
-						<p class="profile-pseudo">Lilly</p>
+						<img class="profile-avatar" src="{{ asset ('uploadedImages/' ~ user.avatar ~ '') }}" alt="Avatar du membre">
+						<p class="profile-pseudo">{{user.pseudo}}</p>
                         <p class="profile-description"> Hello tous le monde, ici vous trouverez énormément de citations que je lis et relis depuis toujours, mes préférés sont ceux sur la motivation, l'ambition et la confiance en soi.</p>
 {# 						<button class="">Modifier profil</button>
  #}					</div>

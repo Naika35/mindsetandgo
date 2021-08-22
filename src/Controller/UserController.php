@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\SignUpType;
+use App\Repository\QuoteRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,16 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/slug", name="user_read")
-     */
-    public function index(): Response
-    {
-        return $this->render('user/read.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
+    
     /**
      * @Route("/signup", name="signup")
      */
@@ -59,4 +51,17 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/profile/{slug}", name="user_read")
+     */
+    public function read(User $user){
+
+        return $this->render('user/read.html.twig',[
+            'user' => $user,
+            
+        ]);
+
+    }
+
 }
