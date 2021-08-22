@@ -50,10 +50,16 @@ class Quote
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="quotes")
+     */
+    private $categories;
+
     public function __construct(){
 
         $this->createdAt = new \DateTime();
         $this->comments = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,33 @@ class Quote
             if ($comment->getQuote() === $this) {
                 $comment->setQuote(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addQuote($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeQuote($this);
         }
 
         return $this;
