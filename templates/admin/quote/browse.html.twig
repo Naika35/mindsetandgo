@@ -29,7 +29,7 @@
 				<tr>
 					<td>{{quote.content}}</td>
 					<td>{{quote.author}}</td>
-					<td>{{quote.category}}</td>
+					<td>{{quote.category|json_encode}}</td>
 					<td>{{quote.createdAt|format_datetime('short','short',locale='fr')}}</td>
 					<td>{{quote.updatedAt ? quote.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>

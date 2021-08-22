@@ -28,9 +28,9 @@ class Quote
     private $author;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $category;
+    private $category = ["Autre"];
 
     /**
      * @ORM\Column(type="datetime")
@@ -76,12 +76,14 @@ class Quote
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
+    public function getCategory(): ?array
+    { 
+        $category = $this->category;
+
+        return array_unique($category);
     }
 
-    public function setCategory(string $category): self
+    public function setCategory(array $category): self
     {
         $this->category = $category;
 

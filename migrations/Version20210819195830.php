@@ -14,7 +14,7 @@ final class Version20210819195830 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Ajout propriété slug dans entité user';
     }
 
     public function up(Schema $schema): void
