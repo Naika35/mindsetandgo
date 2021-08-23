@@ -6,6 +6,8 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -25,6 +27,7 @@ class Category
     private $name;
 
     /**
+     * @Assert\File
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
@@ -44,9 +47,16 @@ class Category
      */
     private $quotes;
 
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=64)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->quotes = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -122,6 +132,18 @@ class Category
     public function removeQuote(Quote $quote): self
     {
         $this->quotes->removeElement($quote);
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

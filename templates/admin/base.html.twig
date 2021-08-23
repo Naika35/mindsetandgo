@@ -30,30 +30,37 @@
 					<div class="collapse navbar-collapse" id="navbarColor01">
 						<ul class="navbar-nav me-auto flex-column ">
 							<li class="nav-item">
-								<a class="nav-link active" href="/admin"><i class="bi bi-house-fill"></i> Accueil
+								<a class="nav-link active" href="/admin">
+									<i class="bi bi-house-fill"></i>
+									Accueil
 									<span class="visually-hidden">(current)</span>
 								</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('admin_user_browse')}}"><i class="bi bi-person-fill"></i> Membres</a>
+								<a class="nav-link" href="{{path('admin_user_browse')}}">
+									<i class="bi bi-person-fill"></i>
+									Membres</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('admin_quote_browse')}}"><i class="bi bi-chat-right-quote-fill"></i> Citations</a>
+								<a class="nav-link" href="{{path('admin_quote_browse')}}">
+									<i class="bi bi-chat-right-quote-fill"></i>
+									Citations</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('admin_comment_browse')}}"><i class="bi bi-chat-dots-fill"></i> Commentaires</a>
+								<a class="nav-link" href="{{path('admin_comment_browse')}}">
+									<i class="bi bi-chat-dots-fill"></i>
+									Commentaires</a>
 							</li>
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="bi bi-journal-richtext"></i> Articles</a>
-								<div class="dropdown-menu">
-									<a class="dropdown-item" href="#">Action</a>
-									<a class="dropdown-item" href="#">Another action</a>
-									<a class="dropdown-item" href="#">Something else here</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Separated link</a>
-								</div>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('admin_category_browse')}}" >
+									<i class="bi bi-tags-fill"></i>
+								Catégories</a>
 							</li>
-							<li class="nav-item"><a href="/" class="nav-link"><i class="bi bi-window"></i> MindSet&Go</a></li>
+							<li class="nav-item">
+								<a href="/" class="nav-link">
+									<i class="bi bi-window"></i>
+									MindSet&Go</a>
+							</li>
 						</ul>
 
 					</div>

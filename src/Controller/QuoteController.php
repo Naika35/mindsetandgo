@@ -23,5 +23,13 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    
+    /**
+     * @Route("/quote/{id}"), name="quote_read", requirements={"id"="\d+"}
+     */
+    public function read(Quote $quote)
+    {
+        return $this->render('quote/read.html.twig', [
+            'quote' => $quote,
+        ]);
+    }
 }

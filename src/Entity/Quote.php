@@ -55,7 +55,8 @@ class Quote
      */
     private $categories;
 
-    public function __construct(){
+    public function __construct()
+    {
 
         $this->createdAt = new \DateTime();
         $this->comments = new ArrayCollection();

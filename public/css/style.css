@@ -215,6 +215,11 @@ td {
   border-radius: 50%;
 }
 
+#table-picture-category{
+  width: 6rem;
+  
+}
+
 #main-back td:first-child {
   padding-left: 1rem;
   display: flex;
