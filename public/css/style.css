@@ -78,7 +78,7 @@ blockquote {
   margin: 0.5rem 20% 1.5rem;
   padding: 1rem;
 }
-.card-body {
+.card-body--perso {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -88,7 +88,7 @@ blockquote {
   margin: 0 15%;
   box-shadow: 15px 15px 15px var(--my-blue);
   border: 1px solid rgba(211, 211, 211, 0.207);
-  border-radius: 10%;
+  border-radius: 1rem;
 }
 
 .card-blockquote-img {
@@ -169,6 +169,60 @@ blockquote {
   padding-top: 2rem;
   width: 25rem;
 }
+
+/* PAGE CITATION */
+
+
+  /* 1) Citation */
+
+  /* 2) Form ajout commentaire */
+
+  /* 3) commentaires */
+
+.comments-block{
+  /* background-color: white;
+  border: 0.1rem solid rgba(192, 192, 192, 0.583);
+  border-radius: 1rem; */
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  background-color: white;
+  background-clip: border-box;
+  border: 1px solid #d2d2dc;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+  box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+}
+
+
+ .comment-user-avatar img {
+   border-radius: 0.3rem;
+   width: 4rem;
+   margin-right: 0.7rem;
+ }
+
+ .comment-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+  
+}
+
+.comment-widgets .comment-row {
+  border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+  padding: 15px
+}
+
+.action-icons a {
+  padding-left: 7px;
+  vertical-align: middle;
+  color: #3ea8ce;
+  text-decoration: none;
+}
+
+.action-icons a:hover {
+  color: #d2b619
+}
+
 
 
 /* BACK OFFICE */

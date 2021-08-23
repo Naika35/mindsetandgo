@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citation
+{% endblock %}
+
+{% block main %}
+
+	<div class="container mt-4">
+		<div class="row">
+			<section class="quote mt-2">
+				<div class="d-flex justify-content-center">
+					<div class="card-body card-body--perso">
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+						<blockquote>
+							<p>
+								{{quote.content}}
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">{{quote.author}}</em>
+								</footer>
+							</p>
+						</blockquote>
+						<div class="card-footer">
+							<div class="card-footer-member">
+								<p>Postée par:
+								</p>
+								<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
+								<p>{{quote.user.pseudo}}</p>
+							</div>
+							<div class="card-tag">
+								{% for category in quote.categories %}
+
+									<p>{{category.name|join(',')}}</p>
+
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="add-comment-form mt-4">
+				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
+					<img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="45">
+					<input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire">
+					<button class="btn btn-primary" type="button">Ajouter</button>
+				</div>
+			</section>
+
+			<section class="comments my-4">
+
+				<div class="comments-block">
+					<div class="card-body text-center mb-2">
+						<h4 class="card-title">Commentaires</h4>
+						<h6 class="card-subtitle">Les derniers commentaires</h6>
+					</div>
+					<div class="comment-widgets m-b-20">
+
+						{% for comment in quote.comments %}
+
+							<div class="d-flex comment-row pb-1">
+								<div class="comment-user p-2">
+									<span class="comment-user-avatar"><img src="{{ asset('uploadedImages/' ~ comment.user.avatar ~ '')}}" alt="avatar du commentateur"></span>
+								</div>
+								<div class="comment-text">
+									<h5>De : {{comment.user.pseudo}}</h5>
+									<p class="text-justify m-0">{{comment.content}}</p>
+
+									<div class="card-footer px-1 pt-2 pb-0 mt-2">
+										<span class="date">Posté le :
+											{{comment.createdAt|format_datetime('short','short',locale='fr')}}</span>
+										<span class="action-icons">
+											<a href="#" data-abc="true">
+												<i class="bi bi-pencil-square"></i>
+											</a>
+											<a href="#" data-abc="true">
+												<i class="bi bi-trash-fill"></i>
+											</a>
+
+										</div>
+
+									</span>
+								</div>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+
+{% endblock %}
