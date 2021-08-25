@@ -28,7 +28,7 @@
 		<tbody>
 			{% for category in categories %}
 				<tr>
-                    <td><img id='table-picture-category' src="{{ asset('images/category/' ~ category.picture ~ '') }}" alt="Image de la catégorie"></td>
+                    <td><img id='table-picture-category' src="{{ asset('uploadedImages/' ~ category.picture ~ '') }}" alt="Image de la catégorie"></td>
 					<td>{{category.name}}</td>
 					<td>{{category.createdAt|format_datetime('short','short',locale='fr')}}</td>
 					<td>{{category.updatedAt ? category.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>

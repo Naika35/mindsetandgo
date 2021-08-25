@@ -17,13 +17,14 @@ class CategoryType extends AbstractType
             ->add('name', null, [
                 'label' => 'Nom de la catégorie'
             ])
-/*             ->add('picture', null, [
+            /*             ->add('picture', null, [
                 'label' => 'Nom de fichier'
             ]) */
             ->add('picture', FileType::class, [
-                'required' => 'false',
-                'data_class' => null,
-                'label' => 'Image',
+                'required' => false,
+                'mapped' => false,
+                /* 'data_class' => null, */
+                'label' => 'Image de la catégorie',
                 'constraints' => new File([
                     'mimeTypes' => [
                         'image/jpg',

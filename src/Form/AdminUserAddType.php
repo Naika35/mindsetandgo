@@ -18,7 +18,9 @@ class AdminUserAddType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo')
+            ->add('pseudo', null, [
+                'label' => 'Pseudo',
+            ])
             ->add('email', EmailType::class, [
                 'constraints' =>
                 new NotBlank(),
@@ -44,6 +46,8 @@ class AdminUserAddType extends AbstractType
             ])
             ->add('avatar', FileType::class, [
                 'data_class' => null,
+                'required' => false,
+                'mapped' => false,               
                 'label' => 'Avatar',
                 'constraints' => new File([
                     'mimeTypes' => [

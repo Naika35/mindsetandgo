@@ -11,7 +11,8 @@
 					<div class="profile-info px-5">
 						<img class="profile-avatar" src="{{ asset ('uploadedImages/' ~ user.avatar ~ '') }}" alt="Avatar du membre">
 						<p class="profile-pseudo">{{user.pseudo}}</p>
-						<p class="profile-description">{{user.presentation}}.</p>
+						<p>Présentation</p>
+						<p class="profile-description">{{user.presentation}}</p>
 						<div class="profile-btn">
 							<a href="{{path('user_edit')}}"><button class="btn">Modifier profil</button></a>
 							<button class="btn">Supprimer profil</button>

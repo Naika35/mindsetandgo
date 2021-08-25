@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\SignUpType;
 use App\Form\UserEditType;
-use App\Repository\QuoteRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    
+
     /**
      * @Route("/signup", name="signup")
      */
@@ -31,8 +30,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Encodage du password
-            $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
+            // Hash du password
+            $newPassword = $form->get('password')->getData();
+            $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
+            
 
             $avatarFile = $form->get('avatar')->getData();
             if ($avatarFile) {
@@ -45,7 +46,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'Vous êtes bien enregistrée). Vous pouvez dès à présent vous connecter.');
 
-            return $this->redirectToRoute('main'); // mettre la page login
+            return $this->redirectToRoute('app_login'); // mettre la page login
         }
 
         return $this->render('user/signup.html.twig', [
@@ -56,12 +57,12 @@ class UserController extends AbstractController
     /**
      * @Route("/{slug}", name="user_read")
      */
-    public function read(User $user){
+    public function read(User $user)
+    {
 
-        return $this->render('user/read.html.twig',[
+        return $this->render('user/read.html.twig', [
             'user' => $user,
         ]);
-
     }
 
     /**
@@ -79,7 +80,8 @@ class UserController extends AbstractController
     /**
      * @Route("user/edit", name="user_edit")
      */
-    public function edit(Request $request, EntityManagerInterface $em){
+    public function edit(Request $request, FileUploader $fileUploader, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em)
+    {
 
         $user = $this->getUser();
 
@@ -88,6 +90,18 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $newPassword = $form->get('password')->getData();
+
+            if ($newPassword) {
+                $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
+            }
+        
+            $avatarFile = $form->get('avatar')->getData();
+            if ($avatarFile) {
+                $avatarFileName = $fileUploader->upload($avatarFile);
+                $user->setAvatar($avatarFileName);
+            }
 
             $em->flush();
 
@@ -100,5 +114,4 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 }

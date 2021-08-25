@@ -31,7 +31,7 @@ class CategoryController extends AbstractController
     /**
      * @Route("/admin/category-add", name="admin_category_add")
      */
-    public function add(Request $request, ImageUploader $imageUploader, EntityManagerInterface $em)
+    public function add(Request $request, FileUploader $fileUploader, EntityManagerInterface $em)
     {
         $category = new Category();
 
@@ -39,13 +39,13 @@ class CategoryController extends AbstractController
 
         $form->handleRequest($request);
 
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            
-            $pictureName = $imageUploader->upload($form, 'picture');
+            $pictureFile = $form->get('picture')->getData();
+            $pictureName = $fileUploader->upload($pictureFile);
             $category->setPicture($pictureName);
-            
+
             $em->persist($category);
             $em->flush();
 
@@ -62,7 +62,7 @@ class CategoryController extends AbstractController
     /**
      * @Route("image/{id}", name="ulpoad", methods={"POST"}, requirements={"id"="\d+"})
      */
-    public function imageUpload(Request $request, Category $category, FileUploader $fileUploader)
+    /*     public function imageUpload(Request $request, Category $category, FileUploader $fileUploader)
     {
         $form = $this->createFormBuilder(null, ['csrf_protection' => false])
             ->add('imageFile', FileType::class, [
@@ -87,12 +87,14 @@ class CategoryController extends AbstractController
         }
 
         return new Response('form not submitted');
-    }
+    } */
+
+
 
     /**
      * @Route("/admin/category-edit/{id}", name="admin_category_edit", requirements={"id"="\d+"}))
      */
-    public function edit(Request $request, Category $category, ImageUploader $imageUploader, EntityManagerInterface $em)
+    public function edit(Request $request, Category $category, FileUploader $fileUploader, EntityManagerInterface $em)
     {
         $form = $this->createForm(CategoryType::class, $category);
 
@@ -100,8 +102,12 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $pictureName = $imageUploader->upload($form, 'picture', $category->getPicture());
-            $category->setPicture($pictureName);
+            $pictureFile = $form->get('picture')->getData();
+            
+            if ($pictureFile) {
+                $pictureName = $fileUploader->upload($pictureFile);
+                $category->setPicture($pictureName);
+            }
 
             $em->flush();
 

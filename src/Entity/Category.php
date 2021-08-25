@@ -27,7 +27,6 @@ class Category
     private $name;
 
     /**
-     * @Assert\File
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;

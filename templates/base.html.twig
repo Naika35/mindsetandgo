@@ -46,16 +46,31 @@
 									<a href="#" class="nav-link px-2 ">Blog</a>
 								</li>
 								{# <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" data-children-count="1"><input type="search" class="form-control form-control-dark" placeholder="Rechercher une citation" aria-label="Search"></form> #}
-								<li class="nav-item">
-									<a href="{{ path('app_login') }}">
-										<button type="button" class="btn mx-lg-3 mb-2">Se connecter</button>
-									</a>
-								</li>
-								<li class="nav-item">
-									<a href="{{ path('signup') }}">
-										<button type="button" class="btn btn-warning">S'inscrire</button>
-									</a>
-								</li>
+								{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+									<li class="nav-item">
+										<a class="nav-link px-2" href="{{path('user_profile')}}">Mon profil
+										</a>
+									</li>
+									<li>
+										<a href="{{path('app_logout')}}">
+											<button class="btn btnwarning">Déconnexion</button>
+										</a>
+									</li>
+
+								{% else %}
+
+									<li class="nav-item">
+										<a href="{{ path('app_login') }}">
+											<button type="button" class="btn mx-lg-3 mb-2">Se connecter</button>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="{{ path('signup') }}">
+											<button type="button" class="btn btn-warning">S'inscrire</button>
+										</a>
+									</li>
+								{% endif %}
 							</ul>
 						</div>
 					</nav>
