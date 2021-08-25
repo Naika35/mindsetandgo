@@ -11,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     /**
-     * @Route("", name="last3Quotes")
+     * @Route("", name="homepage")
      */
-    public function last3Quote(QuoteRepository $quoteRepository): Response
+    public function homepage(QuoteRepository $quoteRepository): Response
     {
 
         $last3Quotes = $quoteRepository->findBy([], ["createdAt" => "DESC"], 3);
@@ -32,4 +32,8 @@ class QuoteController extends AbstractController
             'quote' => $quote,
         ]);
     }
+
+    /**
+     * @Route("/quote/")
+     */
 }

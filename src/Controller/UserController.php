@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\SignUpType;
+use App\Form\UserEditType;
 use App\Repository\QuoteRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,15 +54,51 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profile/{slug}", name="user_read")
+     * @Route("/{slug}", name="user_read")
      */
     public function read(User $user){
 
         return $this->render('user/read.html.twig',[
             'user' => $user,
-            
         ]);
 
+    }
+
+    /**
+     * @Route("user/profile", name="user_profile")
+     */
+    public function profile()
+    {
+        $user = $this->getUser();
+
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("user/edit", name="user_edit")
+     */
+    public function edit(Request $request, EntityManagerInterface $em){
+
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserEditType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+
+            $this->addFlash('success', 'Profil modifié.');
+
+            return $this->redirectToRoute('user_profile');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page d'un membre
+{% block title %}Ma page de profil
 {% endblock %}
 
 {% block main %}
@@ -11,8 +11,11 @@
 					<div class="profile-info px-5">
 						<img class="profile-avatar" src="{{ asset ('uploadedImages/' ~ user.avatar ~ '') }}" alt="Avatar du membre">
 						<p class="profile-pseudo">{{user.pseudo}}</p>
-						<p class="profile-description">
-							{{user.presentation}}.</p>
+						<p class="profile-description">{{user.presentation}}.</p>
+						<div class="profile-btn">
+							<a href="{{path('user_edit')}}"><button class="btn">Modifier profil</button></a>
+							<button class="btn">Supprimer profil</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -22,7 +25,7 @@
 			<div class="container">
 				<div class="last-quotes-header">
 					<h2>Mes citations</h2>
-					<p>Hello !! Découvrez mes citations préférées</p>
+					<button class="btn">Ajouter une citation</button>
 				</div>
 				<div class="row cards">
 
@@ -33,34 +36,29 @@
 							<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
 
 							<blockquote>
-								<p>
-									{{quote.content}}
+								<p>{{quote.content}}
 									<footer class="blockquote-footer pt-2">
 										<em class="author-name">{{quote.author}}</em>
 									</footer>
 								</p>
 							</blockquote>
 
-							<div class="card-footer">
-								{# <div class="card-footer-member">
-									<p>Postée par:
-									</p>
-									<img class="card-footer-avatar" src="{{asset ('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
-									<p>{{quote.user.pseudo}}</p>
-								</div> #}
+							<div class="card-footer w-75">
+								<div class="card-footer-member">
+									<i class="bi bi-pencil-square"></i>
+									<i class="bi bi-trash-fill"></i>
+								</div>
 								<div class="card-tag">
 									{% for category in quote.categories %}
-							<div class="card-tag px-1">
-									<p>{{category.name}}</p>
-							</div>
-								{% endfor %}
+										<div class="card-tag px-1">
+											<p>{{category.name}}</p>
+										</div>
+									{% endfor %}
 								</div>
 							</div>
 
 						</div>
-
 					{% endfor %}
-
 				</div>
 			</div>
 		</section>

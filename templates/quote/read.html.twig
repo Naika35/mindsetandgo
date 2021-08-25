@@ -7,7 +7,7 @@
 
 	<div class="container mt-4">
 		<div class="row">
-			<section class="quote mt-2">
+			<section class="single-quote mt-2">
 				<div class="d-flex justify-content-center">
 					<div class="card-body card-body--perso">
 						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
@@ -26,13 +26,11 @@
 								<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
 								<p>{{quote.user.pseudo}}</p>
 							</div>
-							<div class="card-tag">
 								{% for category in quote.categories %}
-
-									<p>{{category.name|join(',')}}</p>
-
-								{% endfor %}
+							<div class="card-tag px-1">
+									<p>{{category.name}}</p>
 							</div>
+								{% endfor %}
 						</div>
 					</div>
 				</div>

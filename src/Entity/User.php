@@ -85,6 +85,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $presentation;
+
     public function __construct()
     {
 
@@ -322,6 +327,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPresentation(): ?string
+    {
+        return $this->presentation;
+    }
+
+    public function setPresentation(?string $presentation): self
+    {
+        $this->presentation = $presentation;
 
         return $this;
     }

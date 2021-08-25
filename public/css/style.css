@@ -33,7 +33,7 @@ body {
   font-weight: 600;
 }
 
-/* bannières de présentation */
+/* Bannière de présentation */
 
 .banner {
   padding: 0 6.5rem 2rem; 
@@ -120,7 +120,9 @@ blockquote {
   font-size: 75%;
 }
 
-/* Page profile */
+
+/* PAGE PROFILE */
+
 
 .profile-info {
   display: flex;
@@ -149,7 +151,13 @@ blockquote {
   font-size: 1.3rem;
 }
 
-/* page d'inscription */
+.card-footer i{
+  font-size: 1.2rem;
+}
+
+
+/* PAGE INSCRIPTION */
+
 
 .signup-wrapper1 img{
   border-radius: 40%;
@@ -162,7 +170,8 @@ blockquote {
   align-items: center;
 }
 
-/* Page de connexion */
+
+/* PAGE CONNEXION */
 
 .login-img img {
   border-radius: 30%;
@@ -170,10 +179,20 @@ blockquote {
   width: 25rem;
 }
 
+
 /* PAGE CITATION */
 
 
   /* 1) Citation */
+
+.single-quote blockquote p{
+  font-size: 1.1rem;
+  }
+
+.single-quote .card-footer p{
+  font-size: 1rem;
+}
+
 
   /* 2) Form ajout commentaire */
 
