@@ -46,6 +46,7 @@
 									<a href="#" class="nav-link px-2 ">Blog</a>
 								</li>
 								{# <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" data-children-count="1"><input type="search" class="form-control form-control-dark" placeholder="Rechercher une citation" aria-label="Search"></form> #}
+
 								{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
 									<li class="nav-item">
@@ -70,6 +71,7 @@
 											<button type="button" class="btn btn-warning">S'inscrire</button>
 										</a>
 									</li>
+									
 								{% endif %}
 							</ul>
 						</div>

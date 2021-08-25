@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,7 +34,7 @@ class UserController extends AbstractController
             // Hash du password
             $newPassword = $form->get('password')->getData();
             $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
-            
+
 
             $avatarFile = $form->get('avatar')->getData();
             if ($avatarFile) {
@@ -96,7 +97,7 @@ class UserController extends AbstractController
             if ($newPassword) {
                 $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
             }
-        
+
             $avatarFile = $form->get('avatar')->getData();
             if ($avatarFile) {
                 $avatarFileName = $fileUploader->upload($avatarFile);
@@ -113,5 +114,32 @@ class UserController extends AbstractController
         return $this->render('user/edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("user-delete/{id}", name="user_delete")
+     */
+    public function delete(Request $request, User $user, EntityManagerInterface $em)
+    {
+        /*$this->denyAccessUnlessGranted('USER_DELETE', $user);*/
+
+        // On vérifie le token
+        $token = $request->request->get('_token');
+
+        if ($this->isCsrfTokenValid('deleteUser', $token)) {
+
+            // Supprimer la session sinon conflit avec la navbar {% is_granted('IS_AUTHENTICATE_FULLY') %}
+            $session = new Session();
+            $session->invalidate(); // Efface tous les attributs de session et flashes et régénère la session et supprime l'ancienne session de la persistance.
+            
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Le profile a bien été supprimée. A bientôt');
+            return $this->redirectToRoute('homepage');
+        }
+
+        // Si le token n'est pas valide, on lance une exception Access Denied
+        throw $this->createAccessDeniedException('Le token n\'est pas valide.');
     }
 }

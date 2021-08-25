@@ -13,9 +13,14 @@
 						<p class="profile-pseudo">{{user.pseudo}}</p>
 						<p>Présentation</p>
 						<p class="profile-description">{{user.presentation}}</p>
-						<div class="profile-btn">
-							<a href="{{path('user_edit')}}"><button class="btn">Modifier profil</button></a>
-							<button class="btn">Supprimer profil</button>
+						<div class="profile-btn d-flex">
+							<a href="{{path('user_edit')}}">
+								<button class="btn">Modifier profil</button>
+							</a>
+							<form action="{{path('user_delete', {"id" : user.id})}}" method="post" onsubmit="return confirm('Attention!!!! Etes-vous sûr(e) de vouloir supprimer votre profil ?');">
+								<button class="btn mx-3">Supprimer profil</button>
+								<input type="hidden" name="_token" value="{{ csrf_token('deleteUser') }}">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -26,7 +31,9 @@
 			<div class="container">
 				<div class="last-quotes-header">
 					<h2>Mes citations</h2>
-					<a href="{{path('quote_add')}}"><button class="btn">Ajouter une citation</button></a>
+					<a href="{{path('quote_add')}}">
+						<button class="btn">Ajouter une citation</button>
+					</a>
 				</div>
 				<div class="row cards">
 
@@ -45,9 +52,24 @@
 							</blockquote>
 
 							<div class="card-footer w-75">
-								<div class="card-footer-member">
-									<i class="bi bi-pencil-square"></i>
-									<i class="bi bi-trash-fill"></i>
+								<div
+									class="card-footer-member">
+
+									{# {% if is_granted('QUOTE_EDIT', $quote) %} #}
+									<button class="btn-info" href="{{path('quote_edit', {"id" : quote.id})}}">
+										<i class="bi bi-pencil-square"></i>
+									</button>
+									{# {% endif %} #}
+
+									{# {% if is_granted('DELETE_EDIT', $quote) %} #}
+									<form action="{{path('quote_delete', {"id" : quote.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer cette citation ?');">
+										<button class="btn-danger" href="{{path('quote_delete', {"id" : quote.id})}}">
+											<i class="bi bi-trash-fill"></i>
+										</button>
+										<input type="hidden" name="_token" value="{{ csrf_token('deleteQuote') }}">
+									</form>
+
+									{# {% endif %} #}
 								</div>
 								<div class="card-tag">
 									{% for category in quote.categories %}

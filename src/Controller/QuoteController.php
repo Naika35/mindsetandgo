@@ -41,6 +41,8 @@ class QuoteController extends AbstractController
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
+        /* $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); */
+
         $quote = new Quote();
 
         $form = $this->createForm(QuoteType::class, $quote);
@@ -63,5 +65,53 @@ class QuoteController extends AbstractController
         return $this->render('quote/add.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/quote/edit/{id}", name="quote_edit", requirements={"id"="\d+"})
+     */
+    public function edit(Quote $quote, Request $request, EntityManagerInterface $em)
+    {
+        /* $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); */
+
+        $form = $this->createForm(QuoteType::class, $quote);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+
+            $this->addFlash('success', 'La citation a bien été rajoutée');
+
+            return $this->redirectToRoute('quote_read', ['id' => $quote->getId()]);
+        }
+
+        return $this->render('quote/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("quote-delete/{id}", name="quote_delete")
+     */
+    public function delete(Request $request, Quote $quote, EntityManagerInterface $em)
+    {
+        /*$this->denyAccessUnlessGranted('QUOTE_DELETE', $movie);*/
+
+        // On vérifie le token
+        $token = $request->request->get('_token');
+        
+        if ($this->isCsrfTokenValid('deleteQuote', $token)) {
+            $em->remove($quote);
+            $em->flush();
+
+            $this->addFlash('success', 'La citation a bien été supprimée.');
+            return $this->redirectToRoute('user_profile');
+        }
+
+        // Si le token n'est pas valide, on lance une exception Access Denied
+        throw $this->createAccessDeniedException('Le token n\'est pas valide.');
+       
     }
 }
