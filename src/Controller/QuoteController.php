@@ -16,19 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     /**
-     * @Route("", name="homepage")
-     */
-    public function homepage(QuoteRepository $quoteRepository): Response
-    {
-
-        $last3Quotes = $quoteRepository->findBy([], ["createdAt" => "DESC"], 3);
-
-        return $this->render('main/homepage.html.twig', [
-            'last3Quotes' => $last3Quotes,
-        ]);
-    }
-
-    /**
      * @Route("/quote/{id}", name="quote_read", requirements={"id"="\d+"})
      */
     public function read(Quote $quote)

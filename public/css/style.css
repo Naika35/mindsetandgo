@@ -180,6 +180,27 @@ blockquote {
 }
 
 
+/* PAGE CATEGORIES*/
+
+.categories-list .row{
+  display: flex;
+  justify-content: center;
+}
+
+.card-category {
+  text-decoration: none;
+  color: black;
+}
+
+.card-category img{
+  height: 13rem;
+}
+
+.card-category h5{
+  text-align: center;
+}
+
+
 /* PAGE CITATION */
 
 

@@ -22,19 +22,18 @@ class SignUpType extends AbstractType
         $builder
             ->add('pseudo')
             ->add('email', EmailType::class, [
-                'constraints' =>
-                new NotBlank,
-                new Email(),
+                'constraints' => [
+                    new NotBlank,
+                    new Email(),
+                ],
             ])
             ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class, [
-                    'label' => 'Mot de passe',
-                    'constraints' => [
-                        new NotBlank(),
-                        new Length([
-                            'min' => 8
-                        ]),
-                    ]
+                'type' => PasswordType::class,
+                'constraints' => [
+                    new NotBlank(),
+                    new Length([
+                        'min' => 8
+                    ]),
                 ],
                 'first_options'  => [
                     'label' => "Mot de passe"
