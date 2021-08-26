@@ -53,6 +53,11 @@
 										<a class="nav-link px-2" href="{{path('user_profile')}}">Mon profil
 										</a>
 									</li>
+									{% if is_granted('ROLE_ADMIN') %}
+										<li class="nav-item">
+											<a href="{{path('admin_homepage')}}" class="nav-link px-2">Admin</a>
+										</li>
+									{% endif %}
 									<li>
 										<a href="{{path('app_logout')}}">
 											<button class="btn btnwarning">Déconnexion</button>
@@ -71,7 +76,7 @@
 											<button type="button" class="btn btn-warning">S'inscrire</button>
 										</a>
 									</li>
-									
+
 								{% endif %}
 							</ul>
 						</div>

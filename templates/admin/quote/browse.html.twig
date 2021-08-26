@@ -17,6 +17,7 @@
 			<tr class="table-primary">
 				<th scope="col">Citation</th>
 				<th scope="col">Auteur</th>
+				<th scope="col">Créateur (User) </th>
 				<th scope="col">Date de création</th>
 				<th scope="col">Dernière de mise à jour</th>
 				<th scope="col">Modifier</th>
@@ -28,6 +29,7 @@
 				<tr>
 					<td>{{quote.content}}</td>
 					<td>{{quote.author}}</td>
+					<td>{{quote.user.pseudo}}</td>
 					<td>{{quote.createdAt|format_datetime('short','short',locale='fr')}}</td>
 					<td>{{quote.updatedAt ? quote.updatedAt|format_datetime('short','short',locale='fr') : 'Aucune modification faite' }}</td>
 					<td>

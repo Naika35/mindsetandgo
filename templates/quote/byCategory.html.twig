@@ -1,41 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome to MindSetGO
+{% block title %}Citation par category
 {% endblock %}
 
-{% block main %}
-	<main>
-		<section class="banner">
-			<div class="container">
-				<div class="row align-items-center justify-content-center">
 
-					<div class="col-sm-10 col-lg-6 order-lg-2">
-						<img class="img-fluid" src="{{asset('images/vector-presentation.jpg')}}" alt="">
-					</div>
+{% block main %} 
 
-					<div class="pt-4 col-sm-10 col-lg-6 order-lg-1">
-						<h1>Motiver. Inspirer. Partager.</h1>
-						<p>
-							Découvrer des citations motivantes de nos membres et partager les votres.
-							<br>
-						</p>
-						<div class="d-flex">
-							<button class="btn-left btn btn-warning">Découvrer nos citations</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="banner-last-quotes">
+<section class="banner-last-quotes">
 			<div class="container">
 				<div class="row">
 					<div class="last-quotes-header">
-						<h2>Les dernières citations</h2>
-						<p>Retrouver nos dernières citations ajoutées par nos membres</p>
+						<h2>{{category.name}}</h2>
+						<p>L'ambition n'est pas un default</p>
 					</div>
 					<div class="row cards">
-						{% for quote in last3Quotes %}
+						{% for quote in category.quotes %}
 							<div class="card-body card-body--perso my-3 mx-5 col-lg-3 mx-lg-3">
 								<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
 								<blockquote>
@@ -67,5 +46,4 @@
 			</div>
 		</section>
 
-	</main>
 {% endblock %}

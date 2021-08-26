@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Quote;
 use App\Form\QuoteType;
+use App\Repository\CategoryRepository;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,6 +37,20 @@ class QuoteController extends AbstractController
             'quote' => $quote,
         ]);
     }
+
+    /**
+     * @Route("/quote/{slug}", name="quote_by_category" )
+     */
+    public function quoteByCategory(Category $category){
+
+        
+        return $this->render('quote/byCategory.html.twig', [
+            'category' => $category,
+            "groups" => ["category_list"],
+            ]);
+    }
+
+
 
     /**
      * @Route("/quote/add", name="quote_add")
