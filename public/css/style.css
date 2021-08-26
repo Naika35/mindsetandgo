@@ -78,6 +78,9 @@ blockquote {
   margin: 0.5rem 20% 1.5rem;
   padding: 1rem;
 }
+
+ /* CARD CITATION */
+
 .card-body--perso {
   background-color: white;
   display: flex;
@@ -100,26 +103,47 @@ blockquote {
   background-color: unset;
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+  width: 16.5rem;
 }
 
 .card-footer-member {
   display: flex;
-  align-items: flex-end;
-  font-size: 85%;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.card-footer-member p{
+  margin: 0;
 }
 
 .card-footer-avatar {
-  width: 20%;
-  margin: 0 3%;
-  border-radius: 40%;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0.3rem;
+  border-radius: 0.8rem;
+}
+
+.card-link {
+  display: flex;
+  text-decoration: none;
+  color: initial;
+  align-items: center;
 }
 
 .card-tag {
   display: flex;
-  align-items: flex-end;
-  font-size: 75%;
+  align-items: center;
+  flex-direction: column;
 }
 
+.card-tag p{
+  font-size: 0.65rem;
+  margin: 0;
+  background-color: rgba(92, 197, 205, 0.213);
+  border-radius: 2rem;
+  padding: 0 0.3rem;
+}
 
 /* PAGE PROFILE */
 
@@ -216,6 +240,12 @@ blockquote {
 
 
   /* 2) Form ajout commentaire */
+
+.add-comment-section{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
   /* 3) commentaires */
 

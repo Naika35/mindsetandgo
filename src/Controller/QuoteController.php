@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Quote;
+use App\Form\CommentType;
 use App\Form\QuoteType;
 use App\Repository\CategoryRepository;
 use App\Repository\QuoteRepository;
@@ -11,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class QuoteController extends AbstractController
@@ -18,22 +21,46 @@ class QuoteController extends AbstractController
     /**
      * @Route("/quote/{id}", name="quote_read", requirements={"id"="\d+"})
      */
-    public function read(Quote $quote)
+    public function read(EntityManagerInterface $em, Request $request, Quote $quote)
     {
+        if(!$quote){
+            throw new NotFoundHttpException('Cette citation n\'existe pas');
+        }
+
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $comment->setUser($this->getUser());
+
+            $comment->setQuote($quote);
+
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Le commentaire a bien été rajoutée');
+
+            return $this->redirectToRoute('quote_read', ['id' => $comment->getQuote()->getId()]);
+        }
+        
         return $this->render('quote/read.html.twig', [
             'quote' => $quote,
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/quote/{slug}", name="quote_by_category" )
+     * @Route("/quote/category/{slug}", name="quote_by_category" )
      */
     public function quoteByCategory(Category $category){
 
         
         return $this->render('quote/byCategory.html.twig', [
             'category' => $category,
-            "groups" => ["category_list"],
             ]);
     }
 
@@ -100,7 +127,7 @@ class QuoteController extends AbstractController
     }
 
     /**
-     * @Route("quote-delete/{id}", name="quote_delete")
+     * @Route("quote/delete/{id}", name="quote_delete")
      */
     public function delete(Request $request, Quote $quote, EntityManagerInterface $em)
     {

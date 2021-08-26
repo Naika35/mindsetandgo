@@ -26,23 +26,26 @@
 								<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
 								<p>{{quote.user.pseudo}}</p>
 							</div>
-								{% for category in quote.categories %}
-							<div class="card-tag px-1">
+							{% for category in quote.categories %}
+								<div class="card-tag px-1">
 									<p>{{category.name}}</p>
-							</div>
-								{% endfor %}
+								</div>
+							{% endfor %}
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section class="add-comment-form mt-4">
-				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
-					<img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="45">
-					<input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire">
-					<button class="btn btn-primary" type="button">Ajouter</button>
-				</div>
-			</section>
+			<section class="mt-4">
+{# 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
+ #}					{# <input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire"> #}
+					{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}} ) }}
+						<img class="img-fluid img-responsive rounded-circle mr-2" src="{{asset('uploadedImages/' ~ app.user.avatar ~ '')}}" width="45">
+						{{form_row(form.content)}}
+						<button class="btn btn-primary">Ajouter</button>
+					{{form_end(form)}}
+{# 				</div>
+ #}			</section>
 
 			<section class="comments my-4">
 
@@ -60,7 +63,8 @@
 									<span class="comment-user-avatar"><img src="{{ asset('uploadedImages/' ~ comment.user.avatar ~ '')}}" alt="avatar du commentateur"></span>
 								</div>
 								<div class="comment-text">
-									<h5>De : {{comment.user.pseudo}}</h5>
+									<h5>De :
+										{{comment.user.pseudo}}</h5>
 									<p class="text-justify m-0">{{comment.content}}</p>
 
 									<div class="card-footer px-1 pt-2 pb-0 mt-2">

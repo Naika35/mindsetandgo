@@ -40,7 +40,9 @@
 								<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
 								<blockquote>
 									<p>
-										{{quote.content}}
+										<a class="card-link" href="{{path('quote_read', {"id": quote.id})}}">
+											{{quote.content}}
+										</a>
 										<footer class="blockquote-footer pt-2">
 											<em class="author-name">{{quote.author}}</em>
 										</footer>
@@ -50,15 +52,17 @@
 									<div class="card-footer-member">
 										<p>Postée par:
 										</p>
-										<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
-										<p>
-											{{quote.user.pseudo}}</p>
+										<a class="card-link" href="{{ path('user_read', {"slug": quote.user.slug})}}">
+											<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
+											<p>
+												{{quote.user.pseudo}}</p>
+										</a>
 									</div>
-									{% for category in quote.categories %}
-										<div class="card-tag px-1">
+									<div class="card-tag px-1">
+										{% for category in quote.categories %}
 											<p>{{category.name}}</p>
-										</div>
-									{% endfor %}
+										{% endfor %}
+									</div>
 								</div>
 							</div>
 						{% endfor %}
