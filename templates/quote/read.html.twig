@@ -40,7 +40,7 @@
 {# 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
  #}					{# <input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire"> #}
 					{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}} ) }}
-						<img class="img-fluid img-responsive rounded-circle mr-2" src="{{asset('uploadedImages/' ~ app.user.avatar ~ '')}}" width="45">
+						<img class="img-fluid img-responsive rounded-circle mr-2" src="{{asset('uploadedImages/' ~ app.user.avatar ~ '')}}" width="65">
 						{{form_row(form.content)}}
 						<button class="btn btn-primary">Ajouter</button>
 					{{form_end(form)}}
