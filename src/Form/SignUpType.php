@@ -7,9 +7,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SignUpType extends AbstractType
@@ -21,11 +24,25 @@ class SignUpType extends AbstractType
             ->add('email', EmailType::class, [
                 'constraints' =>
                 new NotBlank,
+                new Email(),
             ])
-            ->add('password', PasswordType::class, [
-                'constraints' => new NotBlank,
-                'label' => 'Mot de passe'
-
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class, [
+                    'label' => 'Mot de passe',
+                    'constraints' => [
+                        new NotBlank(),
+                        new Length([
+                            'min' => 8
+                        ]),
+                    ]
+                ],
+                'first_options'  => [
+                    'label' => "Mot de passe"
+                ],
+                'second_options' => [
+                    'label' => 'Répéter le mot de passe'
+                ],
+                'invalid_message' => 'Les mots de passes ne sont pas identiques, veuillez recommencer',
             ])
             ->add('lastname', null, [
                 'label' => "Nom",

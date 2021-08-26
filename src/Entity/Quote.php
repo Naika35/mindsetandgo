@@ -51,7 +51,7 @@ class Quote
     private $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="quotes")
+     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="quotes", cascade={"persist"})
      */
     private $categories;
 

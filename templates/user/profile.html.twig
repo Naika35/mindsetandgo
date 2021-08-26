@@ -9,15 +9,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="profile-info px-5">
-						<img class="profile-avatar" src="{{ asset ('uploadedImages/' ~ user.avatar ~ '') }}" alt="Avatar du membre">
-						<p class="profile-pseudo">{{user.pseudo}}</p>
+						<img class="profile-avatar" src="{{ asset('uploadedImages/' ~ app.user.avatar ~ '') }}" alt="Avatar du membre">
+						<p class="profile-pseudo">{{ app.user.pseudo }}</p>
 						<p>Présentation</p>
-						<p class="profile-description">{{user.presentation}}</p>
+						<p class="profile-description">{{app.user.presentation}}</p>
 						<div class="profile-btn d-flex">
 							<a href="{{path('user_edit')}}">
 								<button class="btn">Modifier profil</button>
 							</a>
-							<form action="{{path('user_delete', {"id" : user.id})}}" method="post" onsubmit="return confirm('Attention!!!! Etes-vous sûr(e) de vouloir supprimer votre profil ?');">
+							<form action="{{path('user_delete', {"id" : app.user.id})}}" method="post" onsubmit="return confirm('Attention!!!! Etes-vous sûr(e) de vouloir supprimer votre profil ?');">
 								<button class="btn mx-3">Supprimer profil</button>
 								<input type="hidden" name="_token" value="{{ csrf_token('deleteUser') }}">
 							</form>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="row cards">
 
-					{% for quote in user.quotes %}
+					{% for quote in app.user.quotes %}
 
 						<div class="card-body card-body--perso my-3 mx-4 col-lg-3 mx-lg-3">
 
@@ -56,9 +56,9 @@
 									class="card-footer-member">
 
 									{# {% if is_granted('QUOTE_EDIT', $quote) %} #}
-									<button class="btn-info" href="{{path('quote_edit', {"id" : quote.id})}}">
+									<a class="btn-info" href="{{path('quote_edit', {"id" : quote.id}) }}">
 										<i class="bi bi-pencil-square"></i>
-									</button>
+									</a>
 									{# {% endif %} #}
 
 									{# {% if is_granted('DELETE_EDIT', $quote) %} #}

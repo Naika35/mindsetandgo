@@ -54,6 +54,10 @@ class QuoteController extends AbstractController
             // Association de la citation au user connecté
             $quote->setUser($this->getUser());
 
+            /* $categories = $form->get('categories')->getData();
+            dd($categories);
+            $quote->addCategory($categories); */
+
             $em->persist($quote);
             $em->flush();
 
