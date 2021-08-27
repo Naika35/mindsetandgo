@@ -18,6 +18,9 @@ class CommentController extends AbstractController
     public function edit(Comment $comment, Request $request, EntityManagerInterface $em)
     {
 
+        // Protection de la route avec un voter
+        $this->denyAccessUnlessGranted('COMMENT_ADD', $comment);
+
         $form = $this->createForm(CommentType::class, $comment);
 
         $form->handleRequest($request);
@@ -40,16 +43,17 @@ class CommentController extends AbstractController
      */
     public function delete(Comment $comment, Request $request, EntityManagerInterface $em)
     {
-        /*$this->denyAccessUnlessGranted('COMMENT_DELETE', $comment);*/
+        $this->denyAccessUnlessGranted('COMMENT_DELETE', $comment);
 
         // On vérifie le token
         $token = $request->request->get('_token');
         
+        //Vérifie validité du CRSF Token 
         if ($this->isCsrfTokenValid('deleteComment', $token)) {
             $em->remove($comment);
             $em->flush();
 
-            $this->addFlash('success', 'Le commentaire a bien été supprimée.');
+            $this->addFlash('success', 'Le commentaire a bien été supprimé.');
             return $this->redirectToRoute('user_profile');
         }
 

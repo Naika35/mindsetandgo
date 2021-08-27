@@ -60,6 +60,7 @@ class UserController extends AbstractController
      */
     public function read(User $user)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         return $this->render('user/read.html.twig', [
             'user' => $user,
@@ -83,8 +84,10 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, FileUploader $fileUploader, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em)
     {
-
+        
         $user = $this->getUser();
+
+        $this->denyAccessUnlessGranted('USER_EDIT', $user);
 
         $form = $this->createForm(UserEditType::class, $user);
 
@@ -121,7 +124,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user, EntityManagerInterface $em)
     {
-        /*$this->denyAccessUnlessGranted('USER_DELETE', $user);*/
+        $this->denyAccessUnlessGranted('USER_DELETE', $user);
 
         // On vérifie le token
         $token = $request->request->get('_token');

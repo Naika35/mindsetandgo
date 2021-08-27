@@ -25,11 +25,30 @@
 								<div class="card-footer-avatar" style="background-image: url('{{asset('uploadedImages/' ~ quote.user.avatar)}}')"></div>
 								<p>{{quote.user.pseudo}}</p>
 							</div>
+							<span class="action-icons d-flex">
+
+								{% if is_granted("QUOTE_EDIT", quote) %}
+									<a href="{{ path('quote_edit', {'id': quote.id }) }}" data-abc="true">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+								{% endif %}
+
+								{% if is_granted("QUOTE_DELETE", quote) %}
+									<form action="{{path('quote_delete', {"id" : quote.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer cette citation ?');">
+										<button class="btn-danger">
+											<i class="bi bi-trash-fill"></i>
+										</button>
+										<input type="hidden" name="_token" value="{{ csrf_token('deleteQuote') }}">
+									</form>
+								{% endif %}
+
+							</span>
+
 							<div class="card-tag px-1">
 								<div class="container">
 									<div class="row justify-content-end align-items-center">
 										{% for category in quote.categories %}
-											<p class="col-7 col-lg-4 text-center">{{category.name}}</p>
+											<p class="col-7 col-lg-4 text-center mx-2">{{category.name}}</p>
 										{% endfor %}
 									</div>
 								</div>
@@ -40,20 +59,14 @@
 			</section>
 
 			<section class="mt-4">
-				{# 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
-																								 #}
-				{# <input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire"> #}
-				{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}}) }}<div class="add-comment-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"> </div>
+				{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}}) }}<div class="add-comment-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"></div>
 
 				{{form_row(form.content)}}
 
 				<button class="btn btn-primary">Ajouter ton commentaire</button>
 
 				{{form_end(form)}}
-				{# 				</div>
-																								 #}
 			</section>
-
 			<section class="comments my-4">
 
 				<div class="comments-block">
@@ -78,6 +91,24 @@
 										<span class="date">Posté le :
 											{{comment.createdAt|format_datetime('short','short',locale='fr')}}
 										</span>
+										<span class="action-icons d-flex">
+
+											{% if is_granted("COMMENT_EDIT", comment) %}
+												<a href="{{ path('comment_edit', {'id': comment.id }) }}" data-abc="true">
+													<i class="bi bi-pencil-square"></i>
+												</a>
+											{% endif %}
+
+											{% if is_granted("COMMENT_DELETE", comment) %}
+												<form action="{{path('comment_delete', {"id" : comment.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer ce commentaire ?');">
+													<button class="btn-danger">
+														<i class="bi bi-trash-fill"></i>
+													</button>
+													<input type="hidden" name="_token" value="{{ csrf_token('deleteComment') }}">
+												</form>
+											{% endif %}
+
+										</span>
 									</div>
 								</div>
 							</div>
@@ -88,6 +119,4 @@
 			</section>
 		</div>
 	</div>
-
-
 {% endblock %}

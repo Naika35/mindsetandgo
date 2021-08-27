@@ -76,9 +76,10 @@ class QuoteController extends AbstractController
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
-        /* $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); */
-
         $quote = new Quote();
+
+        // Protection de la route avec un voter
+        $this->denyAccessUnlessGranted('QUOTE_ADD', $quote);
 
         $form = $this->createForm(QuoteType::class, $quote);
 
@@ -111,7 +112,8 @@ class QuoteController extends AbstractController
      */
     public function edit(Quote $quote, Request $request, EntityManagerInterface $em)
     {
-        /* $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); */
+        // Protection de la route avec un voter
+        $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); 
 
         $form = $this->createForm(QuoteType::class, $quote);
 
@@ -136,7 +138,7 @@ class QuoteController extends AbstractController
      */
     public function delete(Request $request, Quote $quote, EntityManagerInterface $em)
     {
-        /*$this->denyAccessUnlessGranted('QUOTE_DELETE', $quote);*/
+        $this->denyAccessUnlessGranted('QUOTE_DELETE', $quote);
 
         // On vérifie le token
         $token = $request->request->get('_token');
