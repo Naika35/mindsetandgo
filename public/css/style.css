@@ -118,10 +118,13 @@ blockquote {
 }
 
 .card-footer-avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   margin: 0 0.3rem;
-  border-radius: 0.8rem;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .card-link {
@@ -145,6 +148,19 @@ blockquote {
   padding: 0 0.3rem;
 }
 
+#card-footer--single {
+  width: 85%;
+  justify-content: space-between;
+}
+
+#card-footer--single .card-footer-member p{
+  font-size: 1rem;
+}
+
+#card-footer--single .card-tag p{
+  font-size: 0.8rem;
+}
+
 /* PAGE PROFILE */
 
 
@@ -156,10 +172,15 @@ blockquote {
 
 .profile-avatar {
   margin-top: 1rem;
-  width: 9rem;
-  border-radius: 50%;
-  box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
-}
+  width: 10rem;
+  height: 10rem;
+  border-radius: 4rem;
+  border: 0.5rem solid var(--my-blue);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+/*   box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
+ */}
 
 .profile-pseudo {
   padding-top: 1.5rem;
@@ -169,7 +190,7 @@ blockquote {
 }
 
 .profile-description {
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
   text-align: center;
   font-family: playfair display;
   font-size: 1.3rem;
@@ -243,10 +264,21 @@ blockquote {
 
 .add-comment-section{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
 }
 
+.add-comment-avatar {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.add-comment-section button {
+  font-size: 0.9rem;
+}
   /* 3) commentaires */
 
 .comments-block{

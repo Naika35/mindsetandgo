@@ -9,7 +9,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="profile-info px-5">
-						<img class="profile-avatar" src="{{ asset('uploadedImages/' ~ app.user.avatar ~ '') }}" alt="Avatar du membre">
+						<div class="profile-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"></div>
 						<p class="profile-pseudo">{{ app.user.pseudo }}</p>
 						<p>Présentation</p>
 						<p class="profile-description">{{app.user.presentation}}</p>
@@ -52,8 +52,7 @@
 							</blockquote>
 
 							<div class="card-footer w-75">
-								<div
-									class="card-footer-member">
+								<div class="card-footer-member">
 
 									{# {% if is_granted('QUOTE_EDIT', $quote) %} #}
 									<a class="btn-info" href="{{path('quote_edit', {"id" : quote.id}) }}">

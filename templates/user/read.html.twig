@@ -9,7 +9,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="profile-info px-5">
-						<img class="profile-avatar" src="{{ asset ('uploadedImages/' ~ user.avatar ~ '') }}" alt="Avatar du membre">
+						<div class="profile-avatar" style="background-image: url('{{asset('uploadedImages/' ~ user.avatar)}}')"></div>
 						<p class="profile-pseudo">{{user.pseudo}}</p>
 						<p class="profile-description">
 							{{user.presentation}}.</p>
@@ -41,30 +41,21 @@
 								</p>
 							</blockquote>
 
-							<div class="card-footer">
-								{# <div class="card-footer-member">
-									<p>Postée par:
-									</p>
-									<img class="card-footer-avatar" src="{{asset ('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
-									<p>{{quote.user.pseudo}}</p>
-								</div> #}
-								<div class="card-tag">
+							<div class="card-footer justify-content-center">
+								<div class="card-tag px-1 flex-row">
 									{% for category in quote.categories %}
-							<div class="card-tag px-1">
-									<p>{{category.name}}</p>
-							</div>
-								{% endfor %}
+										<p>{{category.name}}</p>
+									{% endfor %}
 								</div>
 							</div>
 
 						</div>
 
 					{% endfor %}
-
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="my-favorites-quotes"></section>
-	</main>
-{% endblock %}
+	<section class="my-favorites-quotes"></section>
+</main>{% endblock %}

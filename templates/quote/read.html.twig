@@ -19,33 +19,42 @@
 								</footer>
 							</p>
 						</blockquote>
-						<div class="card-footer">
+						<div class="card-footer" id="card-footer--single">
 							<div class="card-footer-member">
-								<p>Postée par:
-								</p>
-								<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
+								<p>Postée par:</p>
+								<div class="card-footer-avatar" style="background-image: url('{{asset('uploadedImages/' ~ quote.user.avatar)}}')"></div>
 								<p>{{quote.user.pseudo}}</p>
 							</div>
-							{% for category in quote.categories %}
-								<div class="card-tag px-1">
-									<p>{{category.name}}</p>
+							<div class="card-tag px-1">
+								<div class="container">
+									<div class="row justify-content-end align-items-center">
+										{% for category in quote.categories %}
+											<p class="col-7 col-lg-4 text-center">{{category.name}}</p>
+										{% endfor %}
+									</div>
 								</div>
-							{% endfor %}
+							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 
 			<section class="mt-4">
-{# 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
- #}					{# <input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire"> #}
-					{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}} ) }}
-						<img class="img-fluid img-responsive rounded-circle mr-2" src="{{asset('uploadedImages/' ~ app.user.avatar ~ '')}}" width="65">
-						{{form_row(form.content)}}
-						<button class="btn btn-primary">Ajouter</button>
-					{{form_end(form)}}
-{# 				</div>
- #}			</section>
+				{# 				<div class="d-flex flex-row add-comment-section mt-4 mb-4">
+																 #}
+				{# <input type="text" class="form-control mr-3 mx-3" placeholder="Ajouter un commentaire"> #}
+				{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}}
+				) }}
+					<div class="add-comment-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"> </div>
+
+					{{form_row(form.content)}}
+
+					<button class="btn btn-primary">Ajouter ton commentaire</button>
+
+				{{form_end(form)}}
+				{# 				</div>
+																 #}
+			</section>
 
 			<section class="comments my-4">
 
