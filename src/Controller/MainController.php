@@ -25,7 +25,7 @@ class MainController extends AbstractController
     }
 
     /**
-     *@Route("quote/categories", name="categories_list")
+     *@Route("categories", name="categories_list")
      */
     public function categoriesList(CategoryRepository $categoryRepository)
     {

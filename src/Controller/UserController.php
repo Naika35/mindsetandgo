@@ -56,7 +56,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="user_read")
+     * @Route("/user-profile/{slug}", name="user_read")
      */
     public function read(User $user)
     {
