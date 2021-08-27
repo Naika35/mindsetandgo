@@ -8,6 +8,7 @@ use App\Entity\Quote;
 use App\Form\CommentType;
 use App\Form\QuoteType;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\QuoteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,11 +22,14 @@ class QuoteController extends AbstractController
     /**
      * @Route("/quote/{id}", name="quote_read", requirements={"id"="\d+"})
      */
-    public function read(EntityManagerInterface $em, Request $request, Quote $quote)
+    public function read(EntityManagerInterface $em, Request $request, Quote $quote, CommentRepository $commentRepository)
     {
         if(!$quote){
             throw new NotFoundHttpException('Cette citation n\'existe pas');
         }
+
+        $quoteComments = $commentRepository->findBy(['quote' => $quote], ['createdAt' => 'DESC']);
+        
 
         $comment = new Comment();
 
@@ -49,6 +53,7 @@ class QuoteController extends AbstractController
         
         return $this->render('quote/read.html.twig', [
             'quote' => $quote,
+            'quoteComments' => $quoteComments,
             'form' => $form->createView(),
         ]);
     }
@@ -131,7 +136,7 @@ class QuoteController extends AbstractController
      */
     public function delete(Request $request, Quote $quote, EntityManagerInterface $em)
     {
-        /*$this->denyAccessUnlessGranted('QUOTE_DELETE', $movie);*/
+        /*$this->denyAccessUnlessGranted('QUOTE_DELETE', $quote);*/
 
         // On vérifie le token
         $token = $request->request->get('_token');

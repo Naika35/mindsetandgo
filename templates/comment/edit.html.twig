@@ -4,4 +4,14 @@
 
 {% block main %}
 
+<div class="container">
+		<div class="row">
+			<h1>Modifier le commentaire</h1>
+			{{form_start(form)}}
+			{{form_widget(form)}}
+			<button class='btn btn-success'>Valider</button>
+			{{form_end(form)}}
+		</div>
+	</div>
+
 {% endblock %}

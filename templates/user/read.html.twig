@@ -4,58 +4,57 @@
 {% endblock %}
 
 {% block main %}
-	<main>
-		<section class='section-profile-info'>
-			<div class="container">
-				<div class="row">
-					<div class="profile-info px-5">
-						<div class="profile-avatar" style="background-image: url('{{asset('uploadedImages/' ~ user.avatar)}}')"></div>
-						<p class="profile-pseudo">{{user.pseudo}}</p>
-						<p class="profile-description">
-							{{user.presentation}}.</p>
-					</div>
-				</div>
-			</div>
-		</section>
 
-		<section class="banner-last-quotes">
-			<div class="container">
-				<div class="last-quotes-header">
-					<h2>Mes citations</h2>
-					<p>Hello !! Découvrez mes citations préférées</p>
-				</div>
-				<div class="row cards">
-
-					{% for quote in user.quotes %}
-
-						<div class="card-body card-body--perso my-3 mx-4 col-lg-3 mx-lg-3">
-
-							<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
-
-							<blockquote>
-								<p>
-									{{quote.content}}
-									<footer class="blockquote-footer pt-2">
-										<em class="author-name">{{quote.author}}</em>
-									</footer>
-								</p>
-							</blockquote>
-
-							<div class="card-footer justify-content-center">
-								<div class="card-tag px-1 flex-row">
-									{% for category in quote.categories %}
-										<p>{{category.name}}</p>
-									{% endfor %}
-								</div>
-							</div>
-
-						</div>
-
-					{% endfor %}
+	<section class='section-profile-info'>
+		<div class="container">
+			<div class="row">
+				<div class="profile-info px-5">
+					<div class="profile-avatar" style="background-image: url('{{asset('uploadedImages/' ~ user.avatar)}}')"></div>
+					<p class="profile-pseudo">{{user.pseudo}}</p>
+					<p class="profile-description">
+						{{user.presentation}}.</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section class="my-favorites-quotes"></section>
-</main>{% endblock %}
+	<section class="banner-last-quotes">
+		<div class="container">
+			<div class="last-quotes-header">
+				<h2>Mes citations</h2>
+				<p>Hello !! Découvrez mes citations préférées</p>
+			</div>
+			<div class="row cards">
+
+				{% for quote in user.quotes %}
+
+					<div class="card-body card-body--perso my-3 mx-4 col-lg-3 mx-lg-3">
+
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+
+						<blockquote>
+							<p>
+								{{quote.content}}
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">{{quote.author}}</em>
+								</footer>
+							</p>
+						</blockquote>
+
+						<div class="card-footer justify-content-center">
+							<div class="card-tag px-1 flex-row text-center">
+								{% for category in quote.categories %}
+									<p>{{category.name}}</p>
+								{% endfor %}
+							</div>
+						</div>
+
+					</div>
+
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}

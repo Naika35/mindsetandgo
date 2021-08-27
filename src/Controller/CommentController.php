@@ -24,19 +24,37 @@ class CommentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $comment->setUser($this->getUser());
-
-            $comment->setQuote($this->get);
-
-            $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('success', 'Le commentaire a bien été rajoutée');
+            $this->addFlash('success', 'Le commentaire a bien été modifié');
 
             return $this->redirectToRoute('quote_read', ['id' => $comment->getQuote()->getId()]);
         }
-        return $this->render('admin/comment/add.html.twig', [
+        return $this->render('comment/edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/comment/delete/{id}", name="comment_delete")
+     */
+    public function delete(Comment $comment, Request $request, EntityManagerInterface $em)
+    {
+        /*$this->denyAccessUnlessGranted('COMMENT_DELETE', $comment);*/
+
+        // On vérifie le token
+        $token = $request->request->get('_token');
+        
+        if ($this->isCsrfTokenValid('deleteComment', $token)) {
+            $em->remove($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Le commentaire a bien été supprimée.');
+            return $this->redirectToRoute('user_profile');
+        }
+
+        // Si le token n'est pas valide, on lance une exception Access Denied
+        throw $this->createAccessDeniedException('Le token n\'est pas valide.');
+
     }
 }

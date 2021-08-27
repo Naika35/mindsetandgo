@@ -53,7 +53,7 @@
 										<p>Postée par:
 										</p>
 										<a class="card-link" href="{{ path('user_read', {"slug": quote.user.slug})}}">
-											<img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur">
+											<div class="card-footer-avatar" style="background-image: url('{{asset('uploadedImages/' ~ quote.user.avatar)}}')"></div>
 											<p>
 												{{quote.user.pseudo}}</p>
 										</a>
