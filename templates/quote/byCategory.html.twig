@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citation par category
+{% endblock %}
+
+
+{% block main %}
+
+	<section class="banner-last-quotes">
+		<div class="container">
+			<div class="row">
+				<div class="last-quotes-header">
+					<h2>{{category.name}}</h2>
+					<p>L'ambition n'est pas un default</p>
+				</div>
+				<div class="row cards">
+					{% for quote in category.quotes %}
+						<div class="card-body card-body--perso my-3 mx-5 col-lg-3 mx-lg-3">
+							<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+							<blockquote>
+								<p>
+									<a class="card-link" href="{{path('quote_read', {"id": quote.id})}}">
+										{{quote.content}}
+									</a>
+									<footer class="blockquote-footer pt-2">
+										<em class="author-name">{{quote.author}}</em>
+									</footer>
+								</p>
+							</blockquote>
+							<div class="card-footer">
+								<div class="card-footer-member">
+									<p>Postée par:
+									</p>
+									<a class="card-link" href="{{ path('user_read', {"slug": quote.user.slug})}}">
+										{# <img class="card-footer-avatar" src="{{ asset('uploadedImages/' ~ quote.user.avatar ~ '') }}" alt="avatar de l'auteur"> #}
+										<div class="card-footer-avatar" style="background-image: url('{{asset('uploadedImages/' ~ quote.user.avatar)}}')"></div>
+										<p>
+											{{quote.user.pseudo}}</p>
+									</a>
+								</div>
+									<div class="card-tag px-1">
+								{% for category in quote.categories %}
+										<p>{{category.name}}</p>
+								{% endfor %}
+									</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

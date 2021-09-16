@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\CategoryRepository;
+use App\Repository\QuoteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,12 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     /**
-     * @Route("", name="main")
+     * @Route("", name="homepage")
      */
-    public function index(): Response
+    public function homepage(QuoteRepository $quoteRepository): Response
     {
+
+        $last3Quotes = $quoteRepository->findBy([], ["createdAt" => "DESC"], 3);
+
         return $this->render('main/homepage.html.twig', [
-            'controller_name' => 'MainController',
+            'last3Quotes' => $last3Quotes,
+        ]);
+    }
+
+    /**
+     *@Route("categories", name="categories_list")
+     */
+    public function categoriesList(CategoryRepository $categoryRepository)
+    {
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('main/categoriesList.html.twig', [
+            'categories' => $categories,
         ]);
     }
 }

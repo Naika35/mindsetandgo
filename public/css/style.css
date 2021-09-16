@@ -33,7 +33,7 @@ body {
   font-weight: 600;
 }
 
-/* bannières de présentation */
+/* Bannière de présentation */
 
 .banner {
   padding: 0 6.5rem 2rem; 
@@ -78,7 +78,10 @@ blockquote {
   margin: 0.5rem 20% 1.5rem;
   padding: 1rem;
 }
-.card-body {
+
+ /* CARD CITATION */
+
+.card-body--perso {
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -88,7 +91,7 @@ blockquote {
   margin: 0 15%;
   box-shadow: 15px 15px 15px var(--my-blue);
   border: 1px solid rgba(211, 211, 211, 0.207);
-  border-radius: 10%;
+  border-radius: 1rem;
 }
 
 .card-blockquote-img {
@@ -100,27 +103,66 @@ blockquote {
   background-color: unset;
   display: flex;
   justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+  width: 86%;
 }
 
 .card-footer-member {
   display: flex;
-  align-items: flex-end;
-  font-size: 85%;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.card-footer-member p{
+  margin: 0;
 }
 
 .card-footer-avatar {
-  width: 20%;
-  margin: 0 3%;
-  border-radius: 40%;
+  width: 2.3rem;
+  height: 2.3rem;
+  margin: 0 0.3rem;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card-link {
+  display: flex;
+  text-decoration: none;
+  color: initial;
+  align-items: center;
 }
 
 .card-tag {
   display: flex;
-  align-items: flex-end;
-  font-size: 75%;
+  align-items: center;
+  flex-direction: column;
 }
 
-/* Page profile */
+.card-tag p{
+  font-size: 0.65rem;
+  margin: 0;
+  background-color: rgba(92, 197, 205, 0.213);
+  border-radius: 2rem;
+  padding: 0 0.3rem;
+}
+
+#card-footer--single {
+  width: 85%;
+  justify-content: space-between;
+}
+
+#card-footer--single .card-footer-member p{
+  font-size: 1rem;
+}
+
+#card-footer--single .card-tag p{
+  font-size: 0.8rem;
+}
+
+/* PAGE PROFILE */
+
 
 .profile-info {
   display: flex;
@@ -130,10 +172,15 @@ blockquote {
 
 .profile-avatar {
   margin-top: 1rem;
-  width: 9rem;
-  border-radius: 50%;
-  box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
-}
+  width: 10rem;
+  height: 10rem;
+  border-radius: 4rem;
+  border: 0.5rem solid var(--my-blue);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+/*   box-shadow: 1rem -0.5rem rgba(245, 138, 67, 0.548);
+ */}
 
 .profile-pseudo {
   padding-top: 1.5rem;
@@ -143,13 +190,19 @@ blockquote {
 }
 
 .profile-description {
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
   text-align: center;
   font-family: playfair display;
   font-size: 1.3rem;
 }
 
-/* page d'inscription */
+.card-footer i{
+  font-size: 1.2rem;
+}
+
+
+/* PAGE INSCRIPTION */
+
 
 .signup-wrapper1 img{
   border-radius: 40%;
@@ -162,10 +215,173 @@ blockquote {
   align-items: center;
 }
 
-/* Page de connexion */
+
+/* PAGE CONNEXION */
 
 .login-img img {
   border-radius: 30%;
   padding-top: 2rem;
   width: 25rem;
 }
+
+
+/* PAGE CATEGORIES*/
+
+.categories-list .row{
+  display: flex;
+  justify-content: center;
+}
+
+.card-category {
+  text-decoration: none;
+  color: black;
+}
+
+.card-category img{
+  height: 13rem;
+}
+
+.card-category h5{
+  text-align: center;
+}
+
+
+/* PAGE CITATION */
+
+
+  /* 1) Citation */
+
+.single-quote blockquote p{
+  font-size: 1.1rem;
+  }
+
+.single-quote .card-footer p{
+  font-size: 1rem;
+}
+
+
+  /* 2) Form ajout commentaire */
+
+.add-comment-section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.add-comment-avatar {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.add-comment-section button {
+  font-size: 0.9rem;
+}
+  /* 3) commentaires */
+
+.comments-block{
+  /* background-color: white;
+  border: 0.1rem solid rgba(192, 192, 192, 0.583);
+  border-radius: 1rem; */
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  background-color: white;
+  background-clip: border-box;
+  border: 1px solid #d2d2dc;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(212, 182, 212, 1);
+  box-shadow: 0px 0px 5px 0px rgb(161, 163, 164)
+}
+
+
+ .comment-user-avatar img {
+   border-radius: 0.3rem;
+   width: 4rem;
+   margin-right: 0.7rem;
+ }
+
+ .comment-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+  
+}
+
+.comment-widgets .comment-row {
+  border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+  padding: 15px
+}
+
+.action-icons a {
+  padding-left: 7px;
+  vertical-align: middle;
+  color: #3ea8ce;
+  text-decoration: none;
+}
+
+.action-icons a:hover {
+  color: #d2b619
+}
+
+
+
+/* BACK OFFICE */
+
+  /* 1) navbar Back */
+
+#navbar-back{
+  height: 100vh;
+  position: fixed;  
+  align-items: flex-start;
+  font-size: 0.9rem;
+  font-weight: 500;
+  
+}
+
+#navbar-back ul {
+padding-top: 5rem;
+}
+
+#navbar-back .nav-item{
+  padding-bottom: 1rem;
+}
+
+  /* 2) Main Back */
+
+#main-back{
+  margin-left: 10.3rem;
+  width: 85vw;
+}
+
+  /* 3) Tableau Back */
+
+th {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+td {
+  font-size: 0.8rem;
+}
+
+#table-avatar{
+  width: 3rem;
+  border-radius: 50%;
+}
+
+#table-picture-category{
+  width: 6rem;
+  
+}
+
+#main-back td:first-child {
+  padding-left: 1rem;
+  display: flex;
+}
+
+#main-back tbody{
+  color:rgba(0, 0, 0, 0.816);
+}
+

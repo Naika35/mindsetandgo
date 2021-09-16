@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma page de profil
+{% endblock %}
+
+{% block main %}
+
+	<div class="container">
+		<div class="row">
+			<section class='section-profile-info'>
+				<div class="container">
+					<div class="row">
+						<div class="profile-info px-5">
+							<div class="profile-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"></div>
+							<p class="profile-pseudo">{{ app.user.pseudo }}</p>
+							<p>Présentation</p>
+							<p class="profile-description">{{app.user.presentation}}</p>
+							<div class="profile-btn d-flex">
+								<a href="{{path('user_edit')}}">
+									<button class="btn">Modifier profil</button>
+								</a>
+								<form action="{{path('user_delete', {"id" : app.user.id})}}" method="post" onsubmit="return confirm('Attention!!!! Etes-vous sûr(e) de vouloir supprimer votre profil ?');">
+									<button class="btn mx-3">Supprimer profil</button>
+									<input type="hidden" name="_token" value="{{ csrf_token('deleteUser') }}">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="banner-last-quotes">
+				<div class="container">
+					<div class="last-quotes-header">
+						<h2>Mes citations</h2>
+						<a href="{{path('quote_add')}}">
+							<button class="btn">Ajouter une citation</button>
+						</a>
+					</div>
+					<div class="row cards">
+						{% for quote in app.user.quotes %}
+							<div class="card-body card-body--perso my-3 mx-4 col-lg-3 mx-lg-3">
+								<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+								<blockquote>
+									<p>{{quote.content}}
+										<footer class="blockquote-footer pt-2">
+											<em class="author-name">{{quote.author}}</em>
+										</footer>
+									</p>
+								</blockquote>
+								<div class="card-footer w-75">
+									<div
+										class="card-footer-member">
+										{# {% if is_granted('QUOTE_EDIT', $quote) %} #}
+										<a class="btn-info" href="{{path('quote_edit', {"id" : quote.id}) }}">
+											<i class="bi bi-pencil-square"></i>
+										</a>
+										{# {% endif %} #}
+										{# {% if is_granted('DELETE_EDIT', $quote) %} #}
+										<form action="{{path('quote_delete', {"id" : quote.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer cette citation ?');">
+											<button class="btn-danger">
+												<i class="bi bi-trash-fill"></i>
+											</button>
+											<input type="hidden" name="_token" value="{{ csrf_token('deleteQuote') }}">
+										</form>
+										{# {% endif %} #}
+									</div>
+									<div class="card-tag">
+										{% for category in quote.categories %}
+											<div class="card-tag px-1">
+												<p>{{category.name}}</p>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+			<section class="comments my-4">
+				<div class="comments-block">
+					<div class="card-body text-center mb-2">
+						<h4 class="card-title">Mes commentaires</h4>
+					</div>
+					<div class="comment-widgets m-b-20">
+						{% for comment in app.user.comments %}
+							<div class="d-flex comment-row pb-1">
+								<div class="comment-user p-2">
+									<span class="comment-user-avatar">
+										<img src="{{ asset('uploadedImages/' ~ comment.user.avatar ~ '')}}" alt="avatar du commentateur">
+									</span>
+								</div>
+								<div class="comment-text">
+									<h5>De :
+										{{comment.user.pseudo}}</h5>
+									<p class="text-justify m-0">{{comment.content}}</p>
+									<div class="card-footer px-1 pt-2 pb-0 mt-2">
+										<span class="date">Posté le :
+											{{comment.createdAt|format_datetime('short','short',locale='fr')}}
+										</span>
+										<span class="action-icons">
+											<a href="{{ path('comment_edit', {'id': comment.id }) }}" data-abc="true">
+												<i class="bi bi-pencil-square"></i>
+											</a>
+											{# <a href="{{ path('comment_delete', {'id': comment.id }) }}" data-abc="true">
+												<i class="bi bi-trash-fill"></i>
+											</a> #}
+											<form action="{{path('comment_delete', {"id" : comment.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer ce commentaire ?');">
+											<button class="btn-danger">
+												<i class="bi bi-trash-fill"></i>
+											</button>
+											<input type="hidden" name="_token" value="{{ csrf_token('deleteComment') }}">
+										</form>
+										</span>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+
+{% endblock %}

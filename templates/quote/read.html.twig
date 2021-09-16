@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Citation
+{% endblock %}
+
+{% block main %}
+
+	<div class="container mt-4">
+		<div class="row">
+			<section class="single-quote mt-2">
+				<div class="d-flex justify-content-center">
+					<div class="card-body card-body--perso">
+						<img class="card-blockquote-img img-fluid" src="{{asset('images/blockquote.png') }}" alt="">
+						<blockquote>
+							<p>
+								{{quote.content}}
+								<footer class="blockquote-footer pt-2">
+									<em class="author-name">{{quote.author}}</em>
+								</footer>
+							</p>
+						</blockquote>
+						<div class="card-footer" id="card-footer--single">
+							<div class="card-footer-member">
+								<p>Postée par:</p>
+								<div class="card-footer-avatar" style="background-image: url('{{asset('uploadedImages/' ~ quote.user.avatar)}}')"></div>
+								<p>{{quote.user.pseudo}}</p>
+							</div>
+							<span class="action-icons d-flex">
+
+								{% if is_granted("QUOTE_EDIT", quote) %}
+									<a href="{{ path('quote_edit', {'id': quote.id }) }}" data-abc="true">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+								{% endif %}
+
+								{% if is_granted("QUOTE_DELETE", quote) %}
+									<form action="{{path('quote_delete', {"id" : quote.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer cette citation ?');">
+										<button class="btn-danger">
+											<i class="bi bi-trash-fill"></i>
+										</button>
+										<input type="hidden" name="_token" value="{{ csrf_token('deleteQuote') }}">
+									</form>
+								{% endif %}
+
+							</span>
+
+							<div class="card-tag px-1">
+								<div class="container">
+									<div class="row justify-content-end align-items-center">
+										{% for category in quote.categories %}
+											<p class="col-7 col-lg-4 text-center mx-2">{{category.name}}</p>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="mt-4">
+				{{form_start(form, {'attr': {'class': 'add-comment-section mt-4 mb-4'}}) }}<div class="add-comment-avatar" style="background-image: url('{{asset('uploadedImages/' ~ app.user.avatar)}}')"></div>
+
+				{{form_row(form.content)}}
+
+				<button class="btn btn-primary">Ajouter ton commentaire</button>
+
+				{{form_end(form)}}
+			</section>
+			<section class="comments my-4">
+
+				<div class="comments-block">
+					<div class="card-body text-center mb-2">
+						<h4 class="card-title">Commentaires</h4>
+						<h6 class="card-subtitle">Les derniers commentaires</h6>
+					</div>
+					<div class="comment-widgets m-b-20">
+
+						{% for comment in quoteComments %}
+
+							<div class="d-flex comment-row pb-1">
+								<div class="comment-user p-2">
+									<span class="comment-user-avatar"><img src="{{ asset('uploadedImages/' ~ comment.user.avatar ~ '')}}" alt="avatar du commentateur"></span>
+								</div>
+								<div class="comment-text">
+									<h5>De :
+										{{comment.user.pseudo}}</h5>
+									<p class="text-justify m-0">{{comment.content}}</p>
+
+									<div class="card-footer px-1 pt-2 pb-0 mt-2">
+										<span class="date">Posté le :
+											{{comment.createdAt|format_datetime('short','short',locale='fr')}}
+										</span>
+										<span class="action-icons d-flex">
+
+											{% if is_granted("COMMENT_EDIT", comment) %}
+												<a href="{{ path('comment_edit', {'id': comment.id }) }}" data-abc="true">
+													<i class="bi bi-pencil-square"></i>
+												</a>
+											{% endif %}
+
+											{% if is_granted("COMMENT_DELETE", comment) %}
+												<form action="{{path('comment_delete', {"id" : comment.id})}}" method="post" onsubmit="return confirm('Attention !!!! Etes-vous sûr(e) de vouloir supprimer ce commentaire ?');">
+													<button class="btn-danger">
+														<i class="bi bi-trash-fill"></i>
+													</button>
+													<input type="hidden" name="_token" value="{{ csrf_token('deleteComment') }}">
+												</form>
+											{% endif %}
+
+										</span>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+{% endblock %}
