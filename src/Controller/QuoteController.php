@@ -19,26 +19,32 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuoteController extends AbstractController
 {
-    /**
+    /** Read single quote
      * @Route("/quote/{id}", name="quote_read", requirements={"id"="\d+"})
      */
     public function read(EntityManagerInterface $em, Request $request, Quote $quote, CommentRepository $commentRepository)
     {
+        // if quote doesn't existe, we redirect to the page HttpException while waiting to create a custom page
         if(!$quote){
             throw new NotFoundHttpException('Cette citation n\'existe pas');
         }
 
+        // to view quote comments
         $quoteComments = $commentRepository->findBy(['quote' => $quote], ['createdAt' => 'DESC']);
         
-
+        // if we add new comment 
         $comment = new Comment();
 
+        // create form
         $form = $this->createForm(CommentType::class, $comment);
 
+        
         $form->handleRequest($request);
 
+        // If comment sudmitted, add comment to DataBase and redirect to the template of the quote
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // Insert user connected to the new comment
             $comment->setUser($this->getUser());
 
             $comment->setQuote($quote);
@@ -51,6 +57,7 @@ class QuoteController extends AbstractController
             return $this->redirectToRoute('quote_read', ['id' => $comment->getQuote()->getId()]);
         }
         
+        // Send informations to the template
         return $this->render('quote/read.html.twig', [
             'quote' => $quote,
             'quoteComments' => $quoteComments,
@@ -58,7 +65,7 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    /**
+    /** Sort quote by category with category's slug
      * @Route("/quote/category/{slug}", name="quote_by_category" )
      */
     public function quoteByCategory(Category $category){
@@ -71,14 +78,14 @@ class QuoteController extends AbstractController
 
 
 
-    /**
+    /** Add a new comment
      * @Route("/quote/add", name="quote_add")
      */
     public function add(Request $request, EntityManagerInterface $em)
     {
         $quote = new Quote();
 
-        // Protection de la route avec un voter
+        // protect the road with a vote
         $this->denyAccessUnlessGranted('QUOTE_ADD', $quote);
 
         $form = $this->createForm(QuoteType::class, $quote);
@@ -90,10 +97,7 @@ class QuoteController extends AbstractController
             // Association de la citation au user connecté
             $quote->setUser($this->getUser());
 
-            /* $categories = $form->get('categories')->getData();
-            dd($categories);
-            $quote->addCategory($categories); */
-
+            
             $em->persist($quote);
             $em->flush();
 
@@ -107,12 +111,12 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    /**
+    /** Edit the Quote
      * @Route("/quote/edit/{id}", name="quote_edit", requirements={"id"="\d+"})
      */
     public function edit(Quote $quote, Request $request, EntityManagerInterface $em)
     {
-        // Protection de la route avec un voter
+        // protect the road with a vote
         $this->denyAccessUnlessGranted('QUOTE_EDIT', $quote); 
 
         $form = $this->createForm(QuoteType::class, $quote);
@@ -138,9 +142,10 @@ class QuoteController extends AbstractController
      */
     public function delete(Request $request, Quote $quote, EntityManagerInterface $em)
     {
+        //protect the road with a vote
         $this->denyAccessUnlessGranted('QUOTE_DELETE', $quote);
 
-        // On vérifie le token
+        // Check token
         $token = $request->request->get('_token');
         
         if ($this->isCsrfTokenValid('deleteQuote', $token)) {
@@ -151,7 +156,7 @@ class QuoteController extends AbstractController
             return $this->redirectToRoute('user_profile');
         }
 
-        // Si le token n'est pas valide, on lance une exception Access Denied
+        // If token doesn't valid, we redirect to the page HttpException while waiting to create a custom page
         throw $this->createAccessDeniedException('Le token n\'est pas valide.');
        
     }

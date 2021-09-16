@@ -34,8 +34,8 @@ class CommentVoter extends Voter
             return false;
         }
 
-        // Donne tous les pouvoirs au Role SUPER_ADMIN
-        if ($this->security->isGranted('ROLE_SUPER_ADMIN')) {
+        // Donne tous les pouvoirs au Role_ADMIN
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 

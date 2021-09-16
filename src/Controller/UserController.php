@@ -31,7 +31,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Hash du password
+            // Hash du password‘
             $newPassword = $form->get('password')->getData();
             $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
 

@@ -11,7 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class QuoteVoter extends Voter
 {
 
-    // afin d'avoir is_Granted dans notre Voter, on va faire une injection de dépendance (intancier une classe dans une autre) 
+    // afin d'avoir is_Granted() dans notre Voter, on va faire une injection de dépendance (instancier une classe dans une autre) 
+    // in order to have is_Granted () in our Vote, we will make an injection of dependence (instantiate one class in another)
     private $security;
 
     public function __construct(Security $security)
@@ -20,7 +21,7 @@ class QuoteVoter extends Voter
     }
 
     /**
-     * Vérifie si la permission existe dans le voter/ si notre Voter s'oocupe du droit demandé sur le type d'objet demandé
+     * Checks if permission exists in the vote
      *
      * @param string $attribute
      * @param [type] $subject
@@ -35,8 +36,8 @@ class QuoteVoter extends Voter
     }
     
     /**
-     * Si supports() === true alors cette fonction sera exécutée
-     * Elle vérifie si on respect tous les critères pour fonctionner
+     * If supports() === true this function will be executed
+     * It checks whether we meet all the criteria to operate
      *
      * @param string $attribute
      * @param [type] $subject
@@ -51,16 +52,16 @@ class QuoteVoter extends Voter
             return false;
         }
 
-        // Donne tous les pouvoirs au Role SUPER_ADMIN
-        if ($this->security->isGranted('ROLE_SUPER_ADMIN')) {
+        // Gives all power to ROLE_ADMIN
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
         
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
 
-            case 'ADMIN_QUOTE_ADD':
-            // Si le user a un token, il est connecté, donc il existe
+            case 'QUOTE_ADD':
+            // if user is connected
                 if ($user) {
                     return true;
                 };
@@ -68,7 +69,7 @@ class QuoteVoter extends Voter
             case 'QUOTE_EDIT':
                 // logic to determine if the user can EDIT
                 // return true or false
-                if($user === $subject->getUser() || (in_array('ROLE_ADMIN', $user->getRoles()))){
+                if($user === $subject->getUser()){
                     return true;
                 }
                 break;

@@ -22,7 +22,7 @@ class UserVoter extends Voter
     {
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
-        return in_array($attribute, ['ADMIN_USER_ADD', 'USER_EDIT', 'USER_DELETE'])
+        return in_array($attribute, ['USER_ADD', 'USER_EDIT', 'USER_DELETE'])
             && $subject instanceof User;
     }
 
@@ -35,15 +35,15 @@ class UserVoter extends Voter
             return false;
         }
 
-        // Donne tous les pouvoirs au Role SUPER_ADMIN
-        if ($this->security->isGranted('ROLE_SUPER_ADMIN')) {
+        // Donne tous les pouvoirs au Role_ADMIN
+        if ($this->security->isGranted('ROLE_ADMIN')) {
             return true;
         }
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'ADMIN_USER_ADD':
-                if(in_array('ROLE_SUPER_ADMIN', $user->getRoles())){
+            case 'USER_ADD':
+                if(in_array('ROLE_ADMIN', $user->getRoles())){
                     return true;
                 }
                 break;
